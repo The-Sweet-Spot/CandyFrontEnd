@@ -23,8 +23,15 @@ const router = createBrowserRouter([
         ]
     }
 ])
-
+const Test =() => {
+    return (
+        <div>
+            <p>Hello world</p>
+        </div>
+    )
+}
 //version 18
+
 const app = document.getElementById("apps")
 const root = createRoot(app)
 root.render(<RouterProvider router={router} />)

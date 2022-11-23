@@ -7,7 +7,8 @@ import { Outlet } from "react-router-dom"
 const Homepage = () => {
     return (
         <div>
-            <h2></h2>
+            <h2>Welcome</h2>
+            <Outlet />
         </div>
     )
 }
