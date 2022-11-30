@@ -9,7 +9,7 @@ const Register = () => {
     async function registerHandler(event){
         event.preventDefault();
         try {
-            const response = await fetch('', {
+            const response = await fetch('https://backend-sweet-spot.onrender.com/api/users/register', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

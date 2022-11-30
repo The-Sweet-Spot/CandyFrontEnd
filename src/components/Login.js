@@ -20,7 +20,7 @@ const Login = () => {
         event.preventDefault()
         try {
             const response = await fetch(
-                '',
+                'https://backend-sweet-spot.onrender.com/api/users/login',
                 {
                     method:"POST",
                     headers: {
