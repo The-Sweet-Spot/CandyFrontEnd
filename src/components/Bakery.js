@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 
 const Bakery = () => {
-    const [Bakery, setBakery] = useState ()
+    const [bakery, setBakery] = useState ([])
 
 useEffect(() => {
     async function getAllBakedGoods(){
-        const bakedFetch = await fetch(``,{
-            header: {
+        const bakedFetch = await fetch(`https://backend-sweet-spot.onrender.com/api/bakery`,{
+            headers: {
                 'Content-Type' : 'application/json'
             }
         })
@@ -17,23 +17,24 @@ useEffect(() => {
     getAllBakedGoods()
 },[])
 return(
-    Bakery ? Bakery.map((indivBakery, idx) => {
-        console.log ('bakery', indivBakery)
+    
+    bakery ? bakery.map((indivBakery, idx) => {
         return (
             
-            <div className="Bakery" key={idx}>
+            <div key={idx}>
                 <h1>Bakery</h1>
             
-            <div>
-                <p>Image: {indivBakery.image}</p>
-            </div>
+           <div>
+            <img src={indivBakery.image}></img>
+           </div>
                 
-            <div>
-                <p>Name: {indivBakery.bakedGoodsName}</p>
+            <h3>
+               Name: {indivBakery.bakedGoodsName}
+            </h3>
             </div>
-            </div>
-            )
-        }):<p>No data to show</p>
+        )
+        }) : "No bakery goods to display"
+    
     )
 }
 
