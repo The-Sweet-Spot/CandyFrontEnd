@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 
 
@@ -48,9 +48,13 @@ const Login = () => {
             <h1>Login</h1>
             <br/>
             <form onSubmit={setRegisterInfo}>
-                <label>Username:</label><br/>
+                <label>Username:</label>
+                <input type="text"></input>
+                <br/>
                 <label>Password:</label>
-                <Button type="submit">Login</Button>
+                <input type="text"></input>
+                <br/>
+                <button type="submit">Login</button>
             </form>
             <p>Don't have a login? <Link to ="Register"> Register Here!</Link></p>
             </div>

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
-    const navigate = userNavigate();
+    const [email, setEmail] = useState("")
+    const navigate = useNavigate();
 
     async function registerHandler(event){
         event.preventDefault();
@@ -16,7 +17,8 @@ const Register = () => {
                 },
                 body: JSON.stringify({
                     username: username,
-                    password: password
+                    password: password,
+                    email: email
                 })
             })
             const data = await response.json()
@@ -24,7 +26,7 @@ const Register = () => {
             console.log(data.token)
             console.log(data)
 
-            navigate("/Homepage")
+            // navigate("/Homepage")
         } catch (error) {
             console.log(error)
         }
@@ -36,10 +38,25 @@ const Register = () => {
     const changePassword = (event) => {
         setPassword(event.target.value)
     }
+    const changeEmail = (event) => {
+        setEmail(event.target.value)
+    }
     return (
         <div>
             <div>
-            <h1>Register</h1>
+                <h1>Register</h1>
+                <form onSubmit={registerHandler}>
+                    <label>Enter New Username Here</label>
+                    <input type="text" value={username} onChange={changeUsername}></input>
+                    <br/><br/>
+                    <label>Enter New Password Here</label>
+                    <input type="text" value={password} onChange={changePassword}></input>
+                    <br/><br/>
+                    <label>Enter E-mail Here</label>
+                    <input type="text" value={email} onChange={changeEmail}></input>
+                    <br/><br/>
+                    <button type='submit'>Sign Up</button>
+                </form>
             </div>
         </div>
     )
