@@ -11,6 +11,7 @@ const CandyDetail = (props) => {
             <h2>{candyData.candyId.candyName}</h2>
             <p>{candyData.candyId.candyDescription}</p>
             <p><strong>Price: </strong>{candyData.candyId.price}</p>
+            <p>{candyData.candyId.image}</p>
 
             {/* <div id="button-container">
                 <button id="review-btn"><Link to={`/candy/${candyId}`}>Leave Review</Link></button>
