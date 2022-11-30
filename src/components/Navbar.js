@@ -4,10 +4,16 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
     return (
-        <nav>
-            <p>Put links in here</p>
+        <nav id="navbar">
+            <Link to="/" id="navbar-text">Home</Link>
+            <Link to="/profile" id="navbar-text">Profile</Link>
+            <Link to="/bakery" id="navbar-text">Bakery</Link>
+            <Link to="/candy" id="navbar-text">Candy</Link>
+                {/* - Possibly make a "Products" page with pages for both categories
+                - also make a product link on the navbar with a dropdown bar showing candy/bakery */}
+
         </nav>
     )
-}
+};
 
 export default Navbar;
