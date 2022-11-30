@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"; 
+import Candy from "./Candy";
 
 const CandyDetail = () => {
     const [candyDetails, setCandyDetails] = useState ([])
@@ -16,7 +17,7 @@ const CandyDetail = () => {
                 })
                 const translatedCandyId = await fetchedCandy.json();
                     // console.log("Here's the translated json", translatedCandyId)
-                setCandy(translatedCandyId);
+                setCandyDetails(translatedCandyId);
             } catch (error) {
                 console.log(error);
             }
@@ -43,4 +44,4 @@ const CandyDetail = () => {
 };
 
 
-export default CandyDetail
+export default CandyDetail;
