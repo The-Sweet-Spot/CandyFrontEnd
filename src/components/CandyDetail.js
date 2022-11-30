@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; 
+import { Link, useNavigate, useParams, useOutletContext } from "react-router-dom"; 
 import Candy from "./Candy";
 
 const CandyDetail = () => {
-    const [candyDetails, setCandyDetails] = useState ([])
-    const {id} = useParams ()
+    const [candyDetails, setCandyDetails] = useState ([]);
+    const [navigate] = useNavigate();
+    const { id } = useParams ();
 
     useEffect(() => {
         async function fetchCandyId(){
@@ -15,6 +16,7 @@ const CandyDetail = () => {
                         'Content-Type' : 'application/json'
                     }
                 })
+                
                 const translatedCandyId = await fetchedCandy.json();
                     // console.log("Here's the translated json", translatedCandyId)
                 setCandyDetails(translatedCandyId);
@@ -24,7 +26,6 @@ const CandyDetail = () => {
         }
             fetchCandyId();
     },[])
-
     
     return (
 
