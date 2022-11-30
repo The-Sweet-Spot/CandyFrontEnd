@@ -5,7 +5,7 @@ const BakeryDetail = () => {
 
 useEffect (() => {
     async function getAllBakedGoodsById() {
-        const bakedDetailFetch = await fetch(``, {
+        const bakedDetailFetch = await fetch(`https://backend-sweet-spot.onrender.com/api/bakery`, {
             header:{
                 'Content-Type' : 'application/json'
             }
