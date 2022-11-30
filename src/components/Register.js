@@ -26,7 +26,7 @@ const Register = () => {
             console.log(data.token)
             console.log(data)
 
-            // navigate("/Homepage")
+            navigate("/profile")
         } catch (error) {
             console.log(error)
         }

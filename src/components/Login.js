@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 
 
@@ -6,6 +6,15 @@ const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const [isLogin, setIsLogin] = useState(false)
+    const [token, setToken] = useState(localStorage.getItem("token" || ""))
+    
+    
+    useEffect(() => {
+        if(isLogin) {
+            navigate('/profile')
+        }
+    })
 
     function handleUsernameChange(event) {
         console.log(event.target.value);
@@ -16,7 +25,7 @@ const Login = () => {
         setPassword(event.target.value);
     }
 
-    async function setRegisterInfo(event) {
+    async function handleLoginInfo(event) {
         event.preventDefault()
         try {
             const response = await fetch(
@@ -28,15 +37,21 @@ const Login = () => {
 
                     },
                     body: JSON.stringify({
+                       
                         username: username,
                         password: password
+                        
                     })
                 }
             )
             const data = await response.json();
             console.log("Request's returned promise: ", data.token);
             localStorage.setItem("token", data.token);
-            navigate("/Homepage")
+            const token = localStorage.getItem("token")
+            if(token){
+                setIsLogin(true)
+            }
+            
         } catch (error) {
             console.log(error)
         }
@@ -47,12 +62,12 @@ const Login = () => {
             <div>
             <h1>Login</h1>
             <br/>
-            <form onSubmit={setRegisterInfo}>
+            <form onSubmit={handleLoginInfo}>
                 <label>Username:</label>
-                <input type="text"></input>
+                <input type="text" value={username} onChange={handleUsernameChange}></input>
                 <br/>
                 <label>Password:</label>
-                <input type="text"></input>
+                <input type="text" value={password} onChange={handlePasswordChange}></input>
                 <br/>
                 <button type="submit">Login</button>
             </form>
