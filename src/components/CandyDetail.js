@@ -1,47 +1,58 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; 
-import Candy from "./Candy";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useOutletContext, useParams } from "react-router-dom"; 
 
 const CandyDetail = () => {
-    const [candyDetails, setCandyDetails] = useState ([])
-    const {id} = useParams ()
+    // const [candy, setCandy] = useState([]);
+    const [candyDetail, setCandyDetail] = useState({});
+    const navigate = useNavigate();
+    const { candyId } = useParams()
 
     useEffect(() => {
-        async function fetchCandyId(){
+        async function fetchCandy(){
             try{
-                const fetchedCandy = await fetch(`https://backend-sweet-spot.onrender.com/api/candy/${id}`,
+                const fetchedCandy = await fetch(`https://backend-sweet-spot.onrender.com/api/candy/${candyId}`,
                 {
                     headers: {
                         'Content-Type' : 'application/json'
                     }
                 })
-                const translatedCandyId = await fetchedCandy.json();
-                    // console.log("Here's the translated json", translatedCandyId)
-                setCandyDetails(translatedCandyId);
+                const translatedCandy = await fetchedCandy.json();
+                    console.log("Here's the translated candy", translatedCandy)
+
+                setCandyDetail(translatedCandy);
             } catch (error) {
                 console.log(error);
             }
         }
-            fetchCandyId();
+            fetchCandy();
     },[])
+    // const moreDetailedPost = postsOutletContext[0][candyId]
+    // console.log(candy)
 
-    
+
     return (
-
-        candyDetails ? candyDetails.map((indivCandyDetail, idx) => {
-            return(
-
-                <div key={idx}>
-
-                    <img src={indivCandyDetail.image}></img>
-
-                    <h2>Name: {indivCandyDetail.candyName}</h2>
-                    <h4>Price: {indivCandyDetail.price}</h4>
-                </div>
-            )
-        }) : "We're all sold out of Candy, Whoopsy! "
+        <div>
+            {
+                candyDetail.candyName ?
+                <p id ="description">{candyDetail.candyName}</p>:
+                <p>Description can not be viewed</p>
+            }
+            {/* {
+                <img src={indivCandy.image}></img>
+            } */}
+            {
+                candyDetail.candyDescription ?
+                <p id="description">{candyDetail.candyDescription}</p>:
+                <p>Description can not be viewed</p>
+            }
+            {
+                candyDetail.price ?
+                <p id="description">{candyDetail.price}</p>:
+                <p>Description can not be viewed</p>
+            }
+                {/* <Link to={`/reviews/${id}`}>Leave a Review</Link> */}
+        </div>
     )
-};
-
-
+}
+   
 export default CandyDetail;
