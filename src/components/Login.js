@@ -25,6 +25,11 @@ const Login = () => {
         setPassword(event.target.value);
     }
 
+    useEffect(() => {
+        if(localStorage.getItem("token")) {
+            navigate('/profile')
+        }
+    })
     async function handleLoginInfo(event) {
         event.preventDefault()
         try {
@@ -55,6 +60,7 @@ const Login = () => {
         } catch (error) {
             console.log(error)
         }
+        
     }
 
     return (
