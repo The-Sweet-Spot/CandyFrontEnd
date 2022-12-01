@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
@@ -7,6 +7,11 @@ const Register = () => {
     const [email, setEmail] = useState("")
     const navigate = useNavigate();
 
+useEffect(() => {
+    if(localStorage.getItem("token")) {
+        navigate('/profile')
+    }
+})
     async function registerHandler(event){
         event.preventDefault();
         try {
