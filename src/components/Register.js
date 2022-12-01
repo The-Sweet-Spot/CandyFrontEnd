@@ -43,19 +43,19 @@ const Register = () => {
     }
     return (
         <div>
-            <div>
-                <h1>Register</h1>
-                <form onSubmit={registerHandler}>
-                    <label>Enter New Username Here</label>
-                    <input type="text" value={username} onChange={changeUsername}></input>
+            <div id="register-form">
+                <h1 id="register">Register</h1>
+                <form onSubmit={registerHandler} id="register2">
+                    <label id="register-text">Enter New Username Here</label>
+                    <input type="text" value={username} onChange={changeUsername} id="register-text"></input>
                     <br/><br/>
-                    <label>Enter New Password Here</label>
-                    <input type="text" value={password} onChange={changePassword}></input>
+                    <label id="register-text">Enter New Password Here</label>
+                    <input type="text" value={password} onChange={changePassword} id="register-text"></input>
                     <br/><br/>
-                    <label>Enter E-mail Here</label>
-                    <input type="text" value={email} onChange={changeEmail}></input>
+                    <label id="register-text">Enter E-mail Here</label>
+                    <input type="text" value={email} onChange={changeEmail} id="register-text"></input>
                     <br/><br/>
-                    <button type='submit'>Sign Up</button>
+                    <button type='submit' id="register-button">Sign Up</button>
                 </form>
             </div>
         </div>
