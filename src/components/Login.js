@@ -59,19 +59,19 @@ const Login = () => {
 
     return (
         <div> 
-            <div>
-            <h1>Login</h1>
+            <div id="login-form">
+            <h1 id="login">Login</h1>
             <br/>
-            <form onSubmit={handleLoginInfo}>
-                <label>Username:</label>
-                <input type="text" value={username} onChange={handleUsernameChange}></input>
+            <form onSubmit={handleLoginInfo} id="login2">
+                <label id="login-text">Username:</label>
+                <input type="text" value={username} onChange={handleUsernameChange} id="login-text"></input>
                 <br/>
-                <label>Password:</label>
-                <input type="text" value={password} onChange={handlePasswordChange}></input>
+                <label id="login-text">Password:</label>
+                <input type="text" value={password} onChange={handlePasswordChange} id="login-text"></input>
                 <br/>
-                <button type="submit">Login</button>
+                <button type="submit" id="login-button">Login</button>
             </form>
-            <p>Don't have a login? <Link to ="Register"> Register Here!</Link></p>
+            <p>Don't have a login? <Link to ="/register"> Register Here!</Link></p>
             </div>
         </div>
     )
