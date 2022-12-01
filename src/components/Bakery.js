@@ -33,7 +33,7 @@ return(
                 
             <div>
                 <button id="bakery-button">
-                    <Link className="BakeryButton link" to={`/bakery/${indivBakery.bakedId}`}>Details</Link>
+                    <Link className="BakeryButton link" to={`/bakery/${indivBakery.bakedId}`}>View Item</Link>
                 </button>
             </div>
             </div>
