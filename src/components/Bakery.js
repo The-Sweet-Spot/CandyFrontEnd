@@ -19,10 +19,10 @@ useEffect(() => {
 },[])
 return(
     
-    bakery ? bakery.map((indivBakery, idx) => {
+    bakery ? bakery.map((indivBakery) => {
         return (
             
-            <div key={idx}>
+            <div>
                 <h1>Bakery</h1>
             
            <div>
@@ -34,7 +34,7 @@ return(
             </h3>
             <div>
                 <button>
-                    <Link className="BakeryButton link" to={`/BakeryDetail`}>Details</Link>
+                    <Link className="BakeryButton link" to={`/bakery/${indivBakery.id}`}>Details</Link>
                 </button>
             </div>
             </div>
