@@ -1,3 +1,169 @@
 body {
-    background-color: rgb(202, 62, 202);
+    background-image: url("https://media.istockphoto.com/id/917606744/photo/candy-background.jpg?b=1&s=170667a&w=0&k=20&c=EzbVgEwMTGUkMfaFfJPQdXG4SE8Z6rDqwU0bYqBxalw=");
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+#homepage-containter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 18%;
+    background-image: url("https://static.vecteezy.com/system/resources/previews/005/410/169/non_2x/colorful-sweet-candy-balls-on-blue-pastel-background-trendy-color-for-background-with-copy-space-free-photo.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 20px 20px 50px grey;
+    border-top: 4px solid rgb(70, 133, 252);
+    border-left: 4px solid rgb(70, 133, 252);
+    border-bottom: 4px solid rgb(112, 200, 252);
+    border-right: 4px solid rgb(112, 200, 252);
+    padding-left: 35%;
+    
+}
+#homepage-text {
+    font-family: cursive;
+    font-style: oblique;
+    font-size: 48px;
+    color: rgb(70, 133, 252);
+    padding-left: 35px;
+    font-weight: bold;
+    
+}
+#homepage-text2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-decoration: underline;
+    color: rgb(71, 71, 71);
+}
+#navbar {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    background-image: url("https://static.vecteezy.com/system/resources/previews/003/590/927/original/3d-studio-room-abstract-vertical-lines-striped-candy-blue-perspective-floor-and-background-vector.jpg");
+    border-top: 4px solid rgb(70, 133, 252);
+    border-left: 4px solid rgb(70, 133, 252);
+    border-bottom: 4px solid rgb(112, 200, 252);
+    border-right: 4px solid rgb(112, 200, 252);
+    column-count: 5;
+    column-gap: 30px;
+    margin-top: 30px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 20px 20px 30px rgb(68, 67, 67);
+}
+#navbar-text {
+    font-size: 32px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 1000;
+
+}
+#login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+    margin-left: 50px;
+    margin-right: 50px;
+    background-image: url("https://static.vecteezy.com/system/resources/previews/003/590/927/original/3d-studio-room-abstract-vertical-lines-striped-candy-blue-perspective-floor-and-background-vector.jpg");
+    border-top: 4px solid rgb(70, 133, 252);
+    border-left: 4px solid rgb(70, 133, 252);
+    border-bottom: 4px solid rgb(112, 200, 252);
+    border-right: 4px solid rgb(112, 200, 252);
+}
+#login {
+    display: flex;
+    box-shadow: 10px 10px 30px rgb(68, 67, 67);
+    padding-left: 60px;
+    padding-right: 60px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 1000;
+    color: rgb(74, 74, 197);
+}
+#login2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 10px 10px 30px rgb(68, 67, 67);
+    padding-left: 20px;
+    padding-right: 20px;
+    padding: 20px;
+}
+#login-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    
+    
+
+}
+#login-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+    background-color: rgb(112, 200, 252); 
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 1000;
+
+}
+#register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+    margin-left: 50px;
+    margin-right: 50px;
+    background-image: url("https://static.vecteezy.com/system/resources/previews/003/590/927/original/3d-studio-room-abstract-vertical-lines-striped-candy-blue-perspective-floor-and-background-vector.jpg");
+    border-top: 4px solid rgb(70, 133, 252);
+    border-left: 4px solid rgb(70, 133, 252);
+    border-bottom: 4px solid rgb(112, 200, 252);
+    border-right: 4px solid rgb(112, 200, 252);
+}
+#register {
+    display: flex;
+    box-shadow: 10px 10px 30px rgb(68, 67, 67);
+    padding-left: 60px;
+    padding-right: 60px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 1000;
+    color: rgb(74, 74, 197);
+}
+#register2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 10px 10px 30px rgb(68, 67, 67);
+    padding-left: 20px;
+    padding-right: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+#register-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    
+}
+#register-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+    background-color: rgb(112, 200, 252); 
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 1000;
 }

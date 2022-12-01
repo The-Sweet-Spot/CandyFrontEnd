@@ -8,7 +8,7 @@ import { Outlet } from "react-router-dom"
 const Homepage = () => {
     return (
         <div>
-            <h2>Welcome</h2>
+            
             <Navbar />
             <Outlet />
         </div>
