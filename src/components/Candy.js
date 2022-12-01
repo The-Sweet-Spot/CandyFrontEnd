@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useOutletContext, Link, NavLink } from "react-router-dom";
-import CandyDetail from "./CandyDetail";
+import { useOutletContext, Link, useNavigate, Outlet } from "react-router-dom";
 
 const Candy = () => {
-    const [candy, setCandy] = useState ([])
+    const [candy, setCandy] = useState ([]);
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         async function fetchCandy(){
@@ -14,9 +15,10 @@ const Candy = () => {
                         'Content-Type' : 'application/json'
                     }
                 })
-                const translatedCandy = await fetchedCandy.json();
-                    // console.log("Here's the translated json", translatedCandy)
-                setCandy(translatedCandy);
+                const candyData = await fetchedCandy.json();
+                    console.log("Here's the translated candy", candyData)
+
+                setCandy(candyData);
             } catch (error) {
                 console.log(error);
             }
@@ -37,13 +39,14 @@ const Candy = () => {
                     <img src={indivCandy.image}></img>
 
                     <h2>Name: {indivCandy.candyName}</h2>
-                    <h4>Price: {indivCandy.price}</h4>
-                    <Link to="CandyDetail"><button>View Item</button></Link>
-                    <button><NavLink to="/candy:/id">View Item</NavLink></button>
+                    <div>
+                        <button>
+                            <Link to={`/candy/${indivCandy.candyId}`}>View Item</Link>
+                        </button>
+                    </div>
                 </div>
             )
-        }) : <p>"We're all sold out of Candy, Whoopsy! "
-                <br></br><br></br> NEW INVENTORY COMES IN DAILY... </p>
+        }) : "No Candy to View" 
     )
 };
 
