@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useOutletContext, useParams } from "react-router-dom"; 
 
 const CandyDetail = () => {
-    const [candy, setCandy] = useOutletContext();
-    const [candyDetail, setCandyDetail] = useState([]);
+    // const [candy, setCandy] = useState([]);
+    const [candyDetail, setCandyDetail] = useState({});
     const navigate = useNavigate();
     const { candyId } = useParams()
 
@@ -16,10 +16,10 @@ const CandyDetail = () => {
                         'Content-Type' : 'application/json'
                     }
                 })
-                const candyData = await fetchedCandy.json();
-                    console.log("Here's the translated candy", candyData)
+                const translatedCandy = await fetchedCandy.json();
+                    console.log("Here's the translated candy", translatedCandy)
 
-                setCandy(candyData);
+                setCandyDetail(translatedCandy);
             } catch (error) {
                 console.log(error);
             }
@@ -27,26 +27,32 @@ const CandyDetail = () => {
             fetchCandy();
     },[])
     // const moreDetailedPost = postsOutletContext[0][candyId]
-    console.log(candy)
+    // console.log(candy)
 
 
     return (
         <div>
             {
-                candy[0].map((information, idx) => {
-                    return
-                    <div key={idx}>
-                        <p>{information.name}</p>
-                        <p>{information.candyDescription}</p>
-                        <p>{information.price}</p>
-                        <p>{information.image}</p>
-                    </div>
-                })
-
+                candyDetail.candyName ?
+                <p id ="description">{candyDetail.candyName}</p>:
+                <p>Description can not be viewed</p>
             }
-            <Link to={`/reviews/${id}`}>Leave a Review</Link>
+            {/* {
+                <img src={indivCandy.image}></img>
+            } */}
+            {
+                candyDetail.candyDescription ?
+                <p id="description">{candyDetail.candyDescription}</p>:
+                <p>Description can not be viewed</p>
+            }
+            {
+                candyDetail.price ?
+                <p id="description">{candyDetail.price}</p>:
+                <p>Description can not be viewed</p>
+            }
+                {/* <Link to={`/reviews/${id}`}>Leave a Review</Link> */}
         </div>
     )
 }
-
+   
 export default CandyDetail;

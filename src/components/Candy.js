@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useOutletContext, Link, useNavigate, Outlet } from "react-router-dom";
-import CandyDetail from "./CandyDetail";
 
 const Candy = () => {
-    const [candy, setCandy] = useState ([])
+    const [candy, setCandy] = useState ([]);
     const navigate = useNavigate();
 
 
@@ -40,14 +39,14 @@ const Candy = () => {
                     <img src={indivCandy.image}></img>
 
                     <h2>Name: {indivCandy.candyName}</h2>
-                    <h4>Price: {indivCandy.price}</h4>
-                    <Link to="CandyDetail"><button>View Item</button></Link>
-                    <button onClick={() => navigate("/candy/:candyId")}>View Item</button>
-                    <Outlet context={[candy, setCandy]} />
+                    <div>
+                        <button>
+                            <Link to={`/candy/${indivCandy.candyId}`}>View Item</Link>
+                        </button>
+                    </div>
                 </div>
             )
-        }) : <p>"We're all sold out of Candy, Whoopsy! "
-                <br></br><br></br> NEW INVENTORY COMES IN DAILY... </p>
+        }) : "No Candy to View" 
     )
 };
 
