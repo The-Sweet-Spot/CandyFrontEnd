@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { useOutletContext, Link, NavLink } from "react-router-dom";
+import { useOutletContext, Link, useNavigate, Outlet } from "react-router-dom";
 import CandyDetail from "./CandyDetail";
 
 const Candy = () => {
     const [candy, setCandy] = useState ([])
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         async function fetchCandy(){
@@ -14,9 +16,10 @@ const Candy = () => {
                         'Content-Type' : 'application/json'
                     }
                 })
-                const translatedCandy = await fetchedCandy.json();
-                    // console.log("Here's the translated json", translatedCandy)
-                setCandy(translatedCandy);
+                const candyData = await fetchedCandy.json();
+                    console.log("Here's the translated candy", candyData)
+
+                setCandy(candyData);
             } catch (error) {
                 console.log(error);
             }
@@ -39,7 +42,8 @@ const Candy = () => {
                     <h2>Name: {indivCandy.candyName}</h2>
                     <h4>Price: {indivCandy.price}</h4>
                     <Link to="CandyDetail"><button>View Item</button></Link>
-                    <button><NavLink to="/candy:/id">View Item</NavLink></button>
+                    <button onClick={() => navigate("/candy/:candyId")}>View Item</button>
+                    <Outlet context={[candy, setCandy]} />
                 </div>
             )
         }) : <p>"We're all sold out of Candy, Whoopsy! "

@@ -1,47 +1,52 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; 
-import Candy from "./Candy";
+import { Link, useNavigate, useOutletContext, useParams } from "react-router-dom"; 
 
 const CandyDetail = () => {
-    const [candyDetails, setCandyDetails] = useState ([])
-    const {id} = useParams ()
+    const [candy, setCandy] = useOutletContext();
+    const [candyDetail, setCandyDetail] = useState([]);
+    const navigate = useNavigate();
+    const { candyId } = useParams()
 
     useEffect(() => {
-        async function fetchCandyId(){
+        async function fetchCandy(){
             try{
-                const fetchedCandy = await fetch(`https://backend-sweet-spot.onrender.com/api/candy/${id}`,
+                const fetchedCandy = await fetch(`https://backend-sweet-spot.onrender.com/api/candy/${candyId}`,
                 {
                     headers: {
                         'Content-Type' : 'application/json'
                     }
                 })
-                const translatedCandyId = await fetchedCandy.json();
-                    // console.log("Here's the translated json", translatedCandyId)
-                setCandyDetails(translatedCandyId);
+                const candyData = await fetchedCandy.json();
+                    console.log("Here's the translated candy", candyData)
+
+                setCandy(candyData);
             } catch (error) {
                 console.log(error);
             }
         }
-            fetchCandyId();
+            fetchCandy();
     },[])
+    // const moreDetailedPost = postsOutletContext[0][candyId]
+    console.log(candy)
 
-    
+
     return (
+        <div>
+            {
+                candy[0].map((information, idx) => {
+                    return
+                    <div key={idx}>
+                        <p>{information.name}</p>
+                        <p>{information.candyDescription}</p>
+                        <p>{information.price}</p>
+                        <p>{information.image}</p>
+                    </div>
+                })
 
-        candyDetails ? candyDetails.map((indivCandyDetail, idx) => {
-            return(
-
-                <div key={idx}>
-
-                    <img src={indivCandyDetail.image}></img>
-
-                    <h2>Name: {indivCandyDetail.candyName}</h2>
-                    <h4>Price: {indivCandyDetail.price}</h4>
-                </div>
-            )
-        }) : "We're all sold out of Candy, Whoopsy! "
+            }
+            <Link to={`/reviews/${id}`}>Leave a Review</Link>
+        </div>
     )
-};
-
+}
 
 export default CandyDetail;
