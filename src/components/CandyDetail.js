@@ -31,10 +31,10 @@ const CandyDetail = () => {
 
 
     return (
-        <div>
+        <div id="candy-detail-container">
             {
                 candyDetail.candyName ?
-                <p id ="description">{candyDetail.candyName}</p>:
+                <p id="candy-detail">{candyDetail.candyName}</p>:
                 <p>Description can not be viewed</p>
             }
             {/* {
@@ -42,12 +42,12 @@ const CandyDetail = () => {
             } */}
             {
                 candyDetail.candyDescription ?
-                <p id="description">{candyDetail.candyDescription}</p>:
+                <p id="candy-detail">{candyDetail.candyDescription}</p>:
                 <p>Description can not be viewed</p>
             }
             {
                 candyDetail.price ?
-                <p id="description">{candyDetail.price}</p>:
+                <p id="candy-detail">${candyDetail.price}</p>:
                 <p>Description can not be viewed</p>
             }
                 {/* <Link to={`/reviews/${id}`}>Leave a Review</Link> */}

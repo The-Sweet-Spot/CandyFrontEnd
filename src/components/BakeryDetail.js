@@ -7,7 +7,7 @@ const BakeryDetail = () => {
     const navigate = useNavigate()
     const {bakedId} = useParams()
     console.log(bakedId)
-    console.log(bakery)
+    // console.log(bakery)
 
 useEffect (() => {
         async function bakedDetailFetch(){
@@ -24,20 +24,20 @@ useEffect (() => {
 }, [])
 
     return (
-        <div>
+        <div id="bakery-detail-container">
             {
                 moreBakeryDetail.bakedGoodsName ?
-                <p id ="description">{moreBakeryDetail.bakedGoodsName}</p>:
+                <p id="bakery-details">{moreBakeryDetail.bakedGoodsName}</p>:
                 <p>Description can not be viewed</p>
             }
             {
                 moreBakeryDetail.bakedDescription ?
-                <p id="description">{moreBakeryDetail.bakedDescription}</p>:
+                <p id="bakery-details">{moreBakeryDetail.bakedDescription}</p>:
                 <p>Description can not be viewed</p>
             }
             {
                 moreBakeryDetail.price ?
-                <p id="description">{moreBakeryDetail.price}</p>:
+                <p id="bakery-details">${moreBakeryDetail.price}</p>:
                 <p>Description can not be viewed</p>
             }
         </div>

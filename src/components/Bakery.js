@@ -22,24 +22,24 @@ return(
     bakery ? bakery.map((indivBakery,idx) => {
         return (
             
-            <div key={idx}>
-                <h1>Bakery</h1>
+            <div key={idx} id="bakery-container">
+            <h2 id="bakery-name">
+                {indivBakery.bakedGoodsName}
+            </h2>
             
-           <div>
-            <img src={indivBakery.image}></img>
-           </div>
-                
-            <h3>
-               Name: {indivBakery.bakedGoodsName}
-            </h3>
             <div>
-                <button>
-                    <Link className="BakeryButton link" to={`/bakery/${indivBakery.bakedId}`}>Details</Link>
+                <img src={indivBakery.image} id="bakery-image"></img>
+            </div>
+                
+            <div>
+                <button id="bakery-button">
+                    <Link className="BakeryButton link" to={`/bakery/${indivBakery.bakedId}`}>View Item</Link>
                 </button>
             </div>
             </div>
+            
         )
-        }) : "No bakery goods to display"
+    }) : "No bakery goods to display"
     
     )
 }
