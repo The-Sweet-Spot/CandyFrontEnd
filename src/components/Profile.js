@@ -26,8 +26,7 @@ const Profile = () => {
                 
             }
             fetchProfileData();
-        }
-    )
+    })
         
     
     function logOut(event) {
