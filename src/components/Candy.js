@@ -34,16 +34,21 @@ const Candy = () => {
         candy ? candy.map((indivCandy, idx) => {
             return(
 
-                <div key={idx}>
-
-                    <img src={indivCandy.image}></img>
-
-                    <h2>Name: {indivCandy.candyName}</h2>
+                <div key={idx} id="candy-container">
                     <div>
-                        <button>
+                        <button id="candy-button">
                             <Link to={`/candy/${indivCandy.candyId}`}>View Item</Link>
                         </button>
                     </div>
+
+                    <img src={indivCandy.image} id="candy-image"></img>
+
+                    <h2 id="candy-name">{indivCandy.candyName}</h2>
+                    {/* <div>
+                        <button id="candy-button">
+                            <Link to={`/candy/${indivCandy.candyId}`}>View Item</Link>
+                        </button>
+                    </div> */}
                 </div>
             )
         }) : "No Candy to View" 
