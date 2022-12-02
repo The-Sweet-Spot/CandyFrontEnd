@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 
 
 const Login = () => {
@@ -42,7 +42,6 @@ const Login = () => {
 
                     },
                     body: JSON.stringify({
-                       
                         username: username,
                         password: password
                         
