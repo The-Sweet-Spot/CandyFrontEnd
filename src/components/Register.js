@@ -26,14 +26,21 @@ useEffect(() => {
                     email: email
                 })
             })
+            console.log("this is the data:", response)
+
+            if(response.headers.status == 200) {
             const data = await response.json()
             localStorage.setItem("token", data.token)
             console.log(data.token)
             console.log(data)
 
             navigate("/profile")
+            } else {
+                const object = await response.json()
+                console.log(object)
+            }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 
