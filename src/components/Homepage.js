@@ -2,13 +2,14 @@
 //this is where all outlet context go
 import React, { useState, useEffect} from "react";
 import Navbar from "./Navbar";
-import { Outlet, useOutletContext} from "react-router-dom"
+import { Outlet, useNavigate, useOutletContext} from "react-router-dom"
 
 
 const Homepage = () => {
     const [bakery, setBakery] = useState ([])
     const [candy, setCandy] = useState ([])
     const [myProfile, setMyProfile] = useState({})
+    const navigate = useNavigate()
 
     useEffect(() => {
         async function getAllBakedGoods(){

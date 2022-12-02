@@ -12,9 +12,9 @@ body {
     align-items: center;
     margin-top: 18%;
     background-image: url("https://static.vecteezy.com/system/resources/previews/005/410/169/non_2x/colorful-sweet-candy-balls-on-blue-pastel-background-trendy-color-for-background-with-copy-space-free-photo.jpg");
-    background-attachment: fixed;
     background-repeat: no-repeat;
-    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
     box-shadow: 20px 20px 50px grey;
     border-top: 4px solid rgb(70, 133, 252);
     border-left: 4px solid rgb(70, 133, 252);
@@ -73,6 +73,9 @@ body {
     border-left: 4px solid rgb(70, 133, 252);
     border-bottom: 4px solid rgb(112, 200, 252);
     border-right: 4px solid rgb(112, 200, 252);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 #login {
     display: flex;
@@ -127,6 +130,9 @@ body {
     border-left: 4px solid rgb(70, 133, 252);
     border-bottom: 4px solid rgb(112, 200, 252);
     border-right: 4px solid rgb(112, 200, 252);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 #register {
     display: flex;
@@ -328,4 +334,29 @@ body {
     padding-right: 5%;
     align-items: center;
     text-align: center;
+}
+#profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+    margin-left: 50px;
+    margin-right: 50px;
+    background-image: url("https://static.vecteezy.com/system/resources/previews/003/590/927/original/3d-studio-room-abstract-vertical-lines-striped-candy-blue-perspective-floor-and-background-vector.jpg");
+    border-top: 4px solid rgb(70, 133, 252);
+    border-left: 4px solid rgb(70, 133, 252);
+    border-bottom: 4px solid rgb(112, 200, 252);
+    border-right: 4px solid rgb(112, 200, 252);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+#profile-text{
+    display: flex;
+    box-shadow: 10px 10px 30px rgb(68, 67, 67);
+    padding-left: 60px;
+    padding-right: 60px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 1000;
+    color: rgb(74, 74, 197);
 }
