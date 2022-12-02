@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 
 const Bakery = () => {
-    const [bakery, setBakery] = useOutletContext()
+    const { bakeryState: [bakery, setBakery] } = useOutletContext();
 
 // useEffect(() => {
 //     async function getAllBakedGoods(){

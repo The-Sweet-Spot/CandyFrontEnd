@@ -9,6 +9,11 @@ const Homepage = () => {
     const [bakery, setBakery] = useState ([])
     const [candy, setCandy] = useState ([])
     const [myProfile, setMyProfile] = useState({})
+    const contextObject = {
+        bakeryState: [bakery, setBakery],
+        candyState:[candy, setCandy],
+        profileState: [myProfile, setMyProfile]
+    }
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -25,49 +30,37 @@ const Homepage = () => {
         getAllBakedGoods()
     },[])
 
-    useEffect(() => {
-        if(!localStorage.getItem("token")) {
-            navigate('/login')
-        }
-            async function fetchProfileData() {
-                try {
-                    const response = await fetch('https://backend-sweet-spot.onrender.com/api/users/me',
-                    {
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Authorization": `Bearer ${localStorage.getItem("token")}`
-                        }
-                    }
-                );
-                const data = await response.json();
-                console.log("This is the profile data: ", data)
-                setMyProfile(data)
-                } catch (error) {
-                    console.log(error);
-                }
-                
-            }
-            fetchProfileData();
-        }, [])
     // useEffect(() => {
-    //     async function getAllCandy(){
-    //         const candyFetch = await fetch(`https://backend-sweet-spot.onrender.com/api/candy`,{
-    //             headers: {
-    //                 'Content-Type' : 'application/json'
-    //             }
-    //         })
-    //         const pleaseFetchCandy = await candyFetch.json();
-    //         console.log(pleaseFetchCandy)
-    //         setCandy(pleaseFetchCandy)
+    //     if(!localStorage.getItem("token")) {
+    //         navigate('/login')
     //     }
-    //     getAllCandy()
-    // },[])
+    //         async function fetchProfileData() {
+    //             try {
+    //                 const response = await fetch('https://backend-sweet-spot.onrender.com/api/users/me',
+    //                 {
+    //                     headers: {
+    //                         "Content-Type": "application/json",
+    //                         "Authorization": `Bearer ${localStorage.getItem("token")}`
+    //                     }
+    //                 }
+    //             );
+    //             const data = await response.json();
+    //             console.log("This is the profile data: ", data)
+    //             setMyProfile(data)
+    //             } catch (error) {
+    //                 console.log(error);
+    //             }
+                
+    //         }
+    //         fetchProfileData();
+    //     }, [])
+
 
     return (
         <div>
             
             <Navbar />
-            <Outlet context={[bakery, setBakery, candy, setCandy, myProfile, setMyProfile]} />
+            <Outlet context={contextObject} />
         </div>
     )
 }
