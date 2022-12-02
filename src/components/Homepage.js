@@ -8,6 +8,7 @@ import { Outlet, useOutletContext} from "react-router-dom"
 const Homepage = () => {
     const [bakery, setBakery] = useState ([])
     const [candy, setCandy] = useState ([])
+    const [myProfile, setMyProfile] = useState({})
 
     useEffect(() => {
         async function getAllBakedGoods(){
@@ -23,6 +24,30 @@ const Homepage = () => {
         getAllBakedGoods()
     },[])
 
+    useEffect(() => {
+        if(!localStorage.getItem("token")) {
+            navigate('/login')
+        }
+            async function fetchProfileData() {
+                try {
+                    const response = await fetch('https://backend-sweet-spot.onrender.com/api/users/me',
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${localStorage.getItem("token")}`
+                        }
+                    }
+                );
+                const data = await response.json();
+                console.log("This is the profile data: ", data)
+                setMyProfile(data)
+                } catch (error) {
+                    console.log(error);
+                }
+                
+            }
+            fetchProfileData();
+        }, [])
     // useEffect(() => {
     //     async function getAllCandy(){
     //         const candyFetch = await fetch(`https://backend-sweet-spot.onrender.com/api/candy`,{
@@ -41,7 +66,7 @@ const Homepage = () => {
         <div>
             
             <Navbar />
-            <Outlet context={[bakery, setBakery, candy, setCandy]} />
+            <Outlet context={[bakery, setBakery, candy, setCandy, myProfile, setMyProfile]} />
         </div>
     )
 }
