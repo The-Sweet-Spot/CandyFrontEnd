@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext, Link } from "react-router-dom";
 
 const Profile = () => {
     const { profileState: [myProfile, setMyProfile] } = useOutletContext();
@@ -48,6 +48,7 @@ const Profile = () => {
             <h3 id="profile-text">Welcome {myProfile.username}</h3> :
             <p>There is an error loading your things, I'm sowwy</p>
             } 
+            <p>View your cart <Link to ="/cart"> CART</Link></p>
             {/* {
                 myProfile.length ? myProfile.map((user, idx) => {
                     return <div key={idx} id="profile-text">
