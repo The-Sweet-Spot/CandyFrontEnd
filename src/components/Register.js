@@ -55,7 +55,7 @@ useEffect(() => {
                     <input type="text" value={username} onChange={changeUsername} id="register-text"></input>
                     <br/><br/>
                     <label id="register-text">Enter New Password Here</label>
-                    <input type="text" value={password} onChange={changePassword} id="register-text"></input>
+                    <input type="password" value={password} onChange={changePassword} id="register-text"></input>
                     <br/><br/>
                     <label id="register-text">Enter E-mail Here</label>
                     <input type="text" value={email} onChange={changeEmail} id="register-text"></input>

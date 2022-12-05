@@ -9,10 +9,12 @@ const Homepage = () => {
     const [bakery, setBakery] = useState ([])
     const [candy, setCandy] = useState ([])
     const [myProfile, setMyProfile] = useState({})
+    const [myCart, setMyCart] = useState({})
     const contextObject = {
         bakeryState: [bakery, setBakery],
         candyState:[candy, setCandy],
-        profileState: [myProfile, setMyProfile]
+        profileState: [myProfile, setMyProfile],
+        cartState: [myCart, setMyCart]
     }
     const navigate = useNavigate()
 

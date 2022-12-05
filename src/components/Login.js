@@ -72,7 +72,7 @@ const Login = () => {
                 <input type="text" value={username} onChange={handleUsernameChange} id="login-text"></input>
                 <br/>
                 <label id="login-text">Password:</label>
-                <input type="text" value={password} onChange={handlePasswordChange} id="login-text"></input>
+                <input type="password" value={password} onChange={handlePasswordChange} id="login-text"></input>
                 <br/>
                 <button type="submit" id="login-button">Login</button>
             </form>
