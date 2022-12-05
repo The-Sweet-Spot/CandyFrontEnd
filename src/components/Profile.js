@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 const Profile = () => {
+    const { profileState: [myProfile, setMyProfile] } = useOutletContext();
+    // const [myProfile, setMyProfile] = useState({})
+    
     const navigate = useNavigate()
 
     useEffect(() => {
         if(!localStorage.getItem("token")) {
-            navigate('/login')
+            navigate("/login")
         }
             async function fetchProfileData() {
                 try {
@@ -18,26 +21,41 @@ const Profile = () => {
                         }
                     }
                 );
+                console.log("this is response", response)
                 const data = await response.json();
                 console.log("This is the profile data: ", data)
+                
+                setMyProfile(data.user)
                 } catch (error) {
                     console.log(error);
                 }
                 
             }
             fetchProfileData();
-        }
-    )
+        }, [])
         
     
     function logOut(event) {
         localStorage.removeItem("token");
         navigate("/")
     }
-    return(
-        <div>
-            <h3>Your Profile</h3>
-            <p>Welcome Back!</p>
+    console.log("other", myProfile)
+    return (
+        
+        <div id="profile-container">
+            { 
+            myProfile.username && !!myProfile.username.length ? 
+            <h3 id="profile-text">Welcome {myProfile.username}</h3> :
+            <p>There is an error loading your things, I'm sowwy</p>
+            } 
+            {/* {
+                myProfile.length ? myProfile.map((user, idx) => {
+                    return <div key={idx} id="profile-text">
+                        <p>Message: {user.username}</p>
+                        </div>
+                }) : <p>There are no messages!</p>
+                
+            } */}
             <div>
                 <button onClick={logOut}>Log Out</button>
             </div>

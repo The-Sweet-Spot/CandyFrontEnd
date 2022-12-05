@@ -11,6 +11,7 @@ import Candy from "./components/Candy";
 import Profile from "./components/Profile";
 import BakeryDetail from "./components/BakeryDetail";
 import CandyDetail from "./components/CandyDetail";
+import Cart from "./components/Cart"
 
 const router = createBrowserRouter([
     {
@@ -50,16 +51,14 @@ const router = createBrowserRouter([
                 path: "/profile",
                 element: <Profile />
             },
+            {
+                path: "/cart",
+                element: <Cart />
+            }
         ]
     }
 ])
-const Test =() => {
-    return (
-        <div>
-            <p>Hello world</p>
-        </div>
-    )
-}
+
 //version 18
 
 const app = document.getElementById("apps")
