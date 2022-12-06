@@ -5,17 +5,18 @@ const CandyDetail = () => {
     // const [candy, setCandy] = useState([]);
     const [candyDetail, setCandyDetail] = useState({});
     const navigate = useNavigate();
-    const { candyId } = useParams()
-
+    const { sweetsId } = useParams()
+console.log("sweets id", sweetsId)
     useEffect(() => {
         async function fetchCandy(){
             try{
-                const fetchedCandy = await fetch(`https://backend-sweet-spot.onrender.com/api/candy/${candyId}`,
+                const fetchedCandy = await fetch(`https://backend-sweet-spot.onrender.com/api/sweets/${sweetsId}`,
                 {
                     headers: {
                         'Content-Type' : 'application/json'
                     }
                 })
+                console.log("fetching candy", fetchedCandy)
                 const translatedCandy = await fetchedCandy.json();
                     console.log("Here's the translated candy", translatedCandy)
 
@@ -33,21 +34,26 @@ const CandyDetail = () => {
     return (
         <div id="candy-detail-container">
             {
-                candyDetail.candyName ?
-                <p id="candy-detail">{candyDetail.candyName}</p>:
+                candyDetail.sweetsName ?
+                <p id="candy-detail">{candyDetail.sweetsName}</p>:
                 <p>Description can not be viewed</p>
             }
             {/* {
                 <img src={indivCandy.image}></img>
             } */}
             {
-                candyDetail.candyDescription ?
-                <p id="candy-detail">{candyDetail.candyDescription}</p>:
+                candyDetail.description ?
+                <p id="candy-detail">{candyDetail.description}</p>:
                 <p>Description can not be viewed</p>
             }
             {
                 candyDetail.price ?
                 <p id="candy-detail">${candyDetail.price}</p>:
+                <p>Description can not be viewed</p>
+            }
+              {
+                candyDetail.image ?
+                <img src={candyDetail.image} id="candy-detail-image"></img>:
                 <p>Description can not be viewed</p>
             }
                 {/* <Link to={`/reviews/${id}`}>Leave a Review</Link> */}

@@ -8,26 +8,40 @@ import { Outlet, useNavigate, useOutletContext} from "react-router-dom"
 const Homepage = () => {
     const [bakery, setBakery] = useState ([])
     const [candy, setCandy] = useState ([])
+    const [sweets, setSweets] = useState([])
     const [myProfile, setMyProfile] = useState({})
+    const [myCart, setMyCart] = useState({})
     const contextObject = {
         bakeryState: [bakery, setBakery],
         candyState:[candy, setCandy],
-        profileState: [myProfile, setMyProfile]
+        profileState: [myProfile, setMyProfile],
+        cartState: [myCart, setMyCart],
+        sweetsState: [sweets, setSweets]
     }
     const navigate = useNavigate()
 
     useEffect(() => {
-        async function getAllBakedGoods(){
-            const bakedFetch = await fetch(`https://backend-sweet-spot.onrender.com/api/bakery`,{
+        async function getAllSweets(){
+            const sweetsFetch = await fetch(`https://backend-sweet-spot.onrender.com/api/sweets`,{
                 headers: {
                     'Content-Type' : 'application/json'
                 }
             })
-            const pleaseFetch = await bakedFetch.json();
+            const pleaseFetch = await sweetsFetch.json();
+            console.log("this is the fetch for sweets", pleaseFetch)
+
+            const allBakedGoods = pleaseFetch.filter(oneSweet => {
+                return oneSweet.departmentId === 1
+            })
+            const allCandyGoods = pleaseFetch.filter(oneSweet => {
+                return oneSweet.departmentId === 2
+            })
             console.log(pleaseFetch)
-            setBakery(pleaseFetch)
+            console.log("both baked and candy", allBakedGoods, allCandyGoods)
+            setBakery(allBakedGoods)
+            setCandy(allCandyGoods)
         }
-        getAllBakedGoods()
+        getAllSweets()
     },[])
 
     // useEffect(() => {

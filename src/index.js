@@ -11,7 +11,8 @@ import Candy from "./components/Candy";
 import Profile from "./components/Profile";
 import BakeryDetail from "./components/BakeryDetail";
 import CandyDetail from "./components/CandyDetail";
-import Cart from "./components/Cart"
+import Cart from "./components/Cart";
+import CartItems from "./components/CartItems";
 
 const router = createBrowserRouter([
     {
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
                 element: <Bakery />
             },
             {
-                path: "/bakery/:bakedId",
+                path: "/bakery/:sweetsId",
                 element: <BakeryDetail />
             },
             {
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
                 element: <Candy />
             },
             {
-                path: "/candy/:candyId",
+                path: "/candy/:sweetsId",
                 element: <CandyDetail />
             },
             {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
             {
                 path: "/cart",
                 element: <Cart />
+            },
+            {
+                path: "/cart/:cartItemsId",
+                element: <CartItems />
             }
         ]
     }
