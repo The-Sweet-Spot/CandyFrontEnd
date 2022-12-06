@@ -73,7 +73,7 @@ const Homepage = () => {
     return (
         <div>
             
-            <Navbar />
+            <Navbar context={contextObject}/>
             <Outlet context={contextObject} />
         </div>
     )

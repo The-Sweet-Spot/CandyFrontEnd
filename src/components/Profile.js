@@ -48,7 +48,7 @@ const Profile = () => {
             <h3 id="profile-text">Welcome {myProfile.username}</h3> :
             <p>There is an error loading your things, I'm sowwy</p>
             } 
-            <p>View your cart <Link to ="/cart"> CART</Link></p>
+            <p>View your cart <Link to ="/cart/:userId:"> CART</Link></p>
             {/* {
                 myProfile.length ? myProfile.map((user, idx) => {
                     return <div key={idx} id="profile-text">

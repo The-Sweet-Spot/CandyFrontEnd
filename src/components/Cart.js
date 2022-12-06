@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react"
 import { useOutletContext, useParams, Link } from "react-router-dom"
 import CartItems from "./CartItems"
-import { FaBeer } from "react-icons/fa"
+// import { FaBeer } from "react-icons/fa"
+import addCartItemsToCart from "./addCartItemToCart"
 
 
 const Cart = () => {
     const { cartState: [myCart, setMyCart] } = useOutletContext()
     const { profileState: [myProfile, setMyProfile] } = useOutletContext()
-    const { userId } = useParams()
+    const { cartItemsId } = useParams()
 
     useEffect(() => {
         async function fetchingCart() {
             try {
-            const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/${userId}`, {
+            const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cartitems/mycart`, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${localStorage.getItem("token")}`
@@ -20,6 +21,8 @@ const Cart = () => {
             
             })
             console.log("this is the cart response", response)
+            // console.log("response", response)
+
             const data = await response.json()
             console.log("this is the cart data",data)
             setMyCart(data)
@@ -40,7 +43,7 @@ async function seeCartItems() {
 
     return (
         <div>
-            <h1>MY CART</h1>
+            <h1>Your Cart</h1>
             { 
             myCart.length ? myCart.map((cartItems, idx) =>{
                 return <div key={idx}>
@@ -49,7 +52,14 @@ async function seeCartItems() {
                     </div>
             }): <p>There is an error loading your things, I'm sowwy</p>
             } 
-            
+            {/* Scratch */}
+            <div>
+                <p>
+
+                </p>
+
+
+            </div>
         </div>
     )
         
