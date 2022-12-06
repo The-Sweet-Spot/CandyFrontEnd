@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 
 const Bakery = () => {
+    const { sweetsState: [sweets, setSweets] } = useOutletContext();
     const { bakeryState: [bakery, setBakery] } = useOutletContext();
-
 // useEffect(() => {
 //     async function getAllBakedGoods(){
 //         const bakedFetch = await fetch(`https://backend-sweet-spot.onrender.com/api/bakery`,{
@@ -19,21 +19,21 @@ const Bakery = () => {
 // },[])
 return(
     
-    bakery ? bakery.map((indivBakery,idx) => {
+    bakery ? bakery.map((indivSweets,idx) => {
         return (
             
             <div key={idx} id="bakery-container">
             <h2 id="bakery-name">
-                {indivBakery.bakedGoodsName}
+                {indivSweets.sweetsName}
             </h2>
             
             <div>
-                <img src={indivBakery.image} id="bakery-image"></img>
+                <img src={indivSweets.image} id="bakery-image"></img>
             </div>
                 
             <div>
                 <button id="bakery-button">
-                    <Link className="BakeryButton link" to={`/bakery/${indivBakery.bakedId}`}>View Item</Link>
+                    <Link className="BakeryButton link" to={`/bakery/${indivSweets.sweetsId}`}>View Item</Link>
                 </button>
             </div>
             </div>
