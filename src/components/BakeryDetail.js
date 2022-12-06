@@ -5,13 +5,13 @@ const BakeryDetail = () => {
     const {bakeryState: [bakery, setBakery]} = useOutletContext()
     const [moreBakeryDetail, setMoreBakeryDetail] = useState({})
     const navigate = useNavigate()
-    const {bakedId} = useParams()
-    console.log(bakedId)
+    const {sweetsId} = useParams()
+    
     // console.log(bakery)
 
 useEffect (() => {
         async function bakedDetailFetch(){
-    const bakedDetailFetch = await fetch(`https://backend-sweet-spot.onrender.com/api/bakery/${bakedId}`, {
+    const bakedDetailFetch = await fetch(`https://backend-sweet-spot.onrender.com/api/sweets/${sweetsId}`, {
         header:{
             'Content-Type' : 'application/json'
         }
@@ -26,18 +26,23 @@ useEffect (() => {
     return (
         <div id="bakery-detail-container">
             {
-                moreBakeryDetail.bakedGoodsName ?
-                <p id="bakery-details">{moreBakeryDetail.bakedGoodsName}</p>:
+                moreBakeryDetail.sweetsName ?
+                <p id="bakery-details">{moreBakeryDetail.sweetsName}</p>:
                 <p>Description can not be viewed</p>
             }
             {
-                moreBakeryDetail.bakedDescription ?
-                <p id="bakery-details">{moreBakeryDetail.bakedDescription}</p>:
+                moreBakeryDetail.description ?
+                <p id="bakery-details">{moreBakeryDetail.description}</p>:
                 <p>Description can not be viewed</p>
             }
             {
                 moreBakeryDetail.price ?
                 <p id="bakery-details">${moreBakeryDetail.price}</p>:
+                <p>Description can not be viewed</p>
+            }
+            {
+                moreBakeryDetail.image ?
+                <img src={moreBakeryDetail.image} id="bakery-detail-image"></img>:
                 <p>Description can not be viewed</p>
             }
         </div>
