@@ -11,12 +11,14 @@ const Homepage = () => {
     const [sweets, setSweets] = useState([])
     const [myProfile, setMyProfile] = useState({})
     const [myCart, setMyCart] = useState({})
+    const [myCartItems, setMyCartItems] = useState([])
     const contextObject = {
         bakeryState: [bakery, setBakery],
         candyState:[candy, setCandy],
         profileState: [myProfile, setMyProfile],
         cartState: [myCart, setMyCart],
-        sweetsState: [sweets, setSweets]
+        sweetsState: [sweets, setSweets],
+        cartItemsState: [myCartItems, setMyCartItems]
     }
 console.log("HI im from the homepage", myCart);
 
@@ -45,9 +47,37 @@ console.log("HI im from the homepage", myCart);
         }
         getAllSweets()
     },[])
+console.log ("HELPPPP CART")
+    // useEffect(() => {
+    //     console.log("CREATING a cart")
+    //     async function fetchingCart() {
+    //         try {
+    //             console.log("Start of create cart try block")
+    //         const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart`, {
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //                 "Authorization": `Bearer ${localStorage.getItem("token")}`
+    //             }
+            
+    //         })
+    //         console.log("this is create cart response", response)
+    //         // console.log("response", response)
 
+    //         const data = await response.json()
+    //         console.log("this is create cart data",data)
+    //         setMyCart(data)
+    //     } catch(error) {
+    //         console.log(error)
+    //     }
+
+    //     }
+    //     fetchingCart()
+    // }, []);
+
+    // orderItems
     useEffect(() => {
-        console.log("Creating a cart")
+
+        console.log("CREATING a cart")
         async function fetchingCart() {
             try {
                 console.log("Start of create cart try block")
@@ -70,10 +100,7 @@ console.log("HI im from the homepage", myCart);
 
         }
         fetchingCart()
-    }, []);
 
-    // orderItems
-    useEffect(() => {
         console.log("Start of my cart")
         async function fetchingMyCartItems() {
             try {
@@ -90,7 +117,7 @@ console.log("HI im from the homepage", myCart);
 
             const data = await response.json()
             console.log("this is the cart data",data)
-            setMyCart(data)
+            setMyCartItems(data)
         } catch(error) {
             console.error(error)
         }

@@ -8,6 +8,7 @@ import addCartItemsToCart from "./addCartItemToCart"
 const Cart = () => {
     const { cartState: [myCart, setMyCart] } = useOutletContext()
     const { profileState: [myProfile, setMyProfile] } = useOutletContext()
+    const { cartItemsState: [myCartItems, setMyCartItems] } = useOutletContext()
     const { cartItemsId } = useParams()
 
     // useEffect(() => {
@@ -45,7 +46,7 @@ async function seeCartItems() {
         <div>
             <h1>Your Cart</h1>
             { 
-            myCart.length ? myCart.map((cartItems, idx) =>{
+            myCartItems.length ? myCartItems.map((cartItems, idx) =>{
                 return <div key={idx}>
                     <p>Your items: {cartItems.cartItemsId}</p>
                     <div><Link to={`cart/${cartItems.cartItemsId}`}>Items in your cart</Link></div>
