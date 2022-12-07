@@ -10,29 +10,29 @@ const Cart = () => {
     const { profileState: [myProfile, setMyProfile] } = useOutletContext()
     const { cartItemsId } = useParams()
 
-    useEffect(() => {
-        async function fetchingCart() {
-            try {
-            const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cartitems/mycart`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${localStorage.getItem("token")}`
-                }
+    // useEffect(() => {
+    //     async function fetchingCart() {
+    //         try {
+    //         const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cartitems/mycart`, {
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //                 "Authorization": `Bearer ${localStorage.getItem("token")}`
+    //             }
             
-            })
-            console.log("this is the cart response", response)
-            // console.log("response", response)
+    //         })
+    //         console.log("this is the cart response", response)
+    //         // console.log("response", response)
 
-            const data = await response.json()
-            console.log("this is the cart data",data)
-            setMyCart(data)
-        } catch(error) {
-            console.error(error)
-        }
+    //         const data = await response.json()
+    //         console.log("this is the cart data",data)
+    //         setMyCart(data)
+    //     } catch(error) {
+    //         console.error(error)
+    //     }
 
-        }
-        fetchingCart()
-    }, []);
+    //     }
+    //     fetchingCart()
+    // }, []);
 async function seeCartItems() {
     try {
         const response = await fetch (``)
