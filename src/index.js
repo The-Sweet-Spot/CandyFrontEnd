@@ -13,6 +13,7 @@ import BakeryDetail from "./components/BakeryDetail";
 import CandyDetail from "./components/CandyDetail";
 import Cart from "./components/Cart";
 import CartItems from "./components/CartItems";
+import AddCartItemToCart from "./components/addCartItemToCart";
 
 const router = createBrowserRouter([
     {
@@ -53,13 +54,13 @@ const router = createBrowserRouter([
                 element: <Profile />
             },
             {
-                path: "/cart",
+                path: "/cart/:cartItemsId",
                 element: <Cart />
             },
             {
-                path: "/cart/:cartItemsId",
+                path: "/cart/:sweetsId",
                 element: <CartItems />
-            }
+            }, 
         ]
     }
 ])
