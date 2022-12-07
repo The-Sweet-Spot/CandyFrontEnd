@@ -45,11 +45,11 @@ async function addToCart() {
                 'Content-Type' : 'application/json',
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             },
-            body: {
+            body: JSON.stringify({
                 cartId: myCart.cartId,
                 usersId: myProfile.id,
                 price_bought_at: moreBakeryDetail.price
-            }
+            })
         })
         console.log ("DATATATAT 1", myProfile )
         console.log ("DATATATAT 2", myProfile.id )
