@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({context}) => {
     return (
         <nav id="navbar">
             <Link to="/" id="navbar-text">Home</Link>

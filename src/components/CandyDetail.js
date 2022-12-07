@@ -56,7 +56,8 @@ console.log("sweets id", sweetsId)
                 <img src={candyDetail.image} id="candy-detail-image"></img>:
                 <p>Description can not be viewed</p>
             }
-                {/* <Link to={`/reviews/${id}`}>Leave a Review</Link> */}
+                {/* add to order button
+                then refetch cart & order items*/}
         </div>
     )
 }

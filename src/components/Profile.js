@@ -7,32 +7,32 @@ const Profile = () => {
     
     const navigate = useNavigate()
 
-    useEffect(() => {
-        if(!localStorage.getItem("token")) {
-            navigate("/login")
-        }
-            async function fetchProfileData() {
-                try {
-                    const response = await fetch('https://backend-sweet-spot.onrender.com/api/users/me',
-                    {
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Authorization": `Bearer ${localStorage.getItem("token")}`
-                        }
-                    }
-                );
-                console.log("this is response", response)
-                const data = await response.json();
-                console.log("This is the profile data: ", data)
+    // useEffect(() => {
+    //     if(!localStorage.getItem("token")) {
+    //         navigate("/login")
+    //     }
+    //         async function fetchProfileData() {
+    //             try {
+    //                 const response = await fetch('https://backend-sweet-spot.onrender.com/api/users/me',
+    //                 {
+    //                     headers: {
+    //                         "Content-Type": "application/json",
+    //                         "Authorization": `Bearer ${localStorage.getItem("token")}`
+    //                     }
+    //                 }
+    //             );
+    //             console.log("this is response", response)
+    //             const data = await response.json();
+    //             console.log("This is the profile data: ", data)
                 
-                setMyProfile(data.user)
-                } catch (error) {
-                    console.log(error);
-                }
+    //             setMyProfile(data.user)
+    //             } catch (error) {
+    //                 console.log(error);
+    //             }
                 
-            }
-            fetchProfileData();
-        }, [])
+    //         }
+    //         fetchProfileData();
+    //     }, [])
         
     
     function logOut(event) {
@@ -48,7 +48,7 @@ const Profile = () => {
             <h3 id="profile-text">Welcome {myProfile.username}</h3> :
             <p>There is an error loading your things, I'm sowwy</p>
             } 
-            <p>View your cart <Link to ="/cart"> CART</Link></p>
+            <p>View your cart <Link to ="/cart/:userId:"> CART</Link></p>
             {/* {
                 myProfile.length ? myProfile.map((user, idx) => {
                     return <div key={idx} id="profile-text">
