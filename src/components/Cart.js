@@ -9,7 +9,7 @@ const Cart = () => {
     const { cartState: [myCart, setMyCart] } = useOutletContext()
     const { profileState: [myProfile, setMyProfile] } = useOutletContext()
     const { cartItemsState: [myCartItems, setMyCartItems] } = useOutletContext()
-    const { cartItemsId } = useParams()
+
 
     // useEffect(() => {
     //     async function fetchingCart() {
@@ -65,8 +65,14 @@ const Cart = () => {
             }): <p>There is an error loading your things, I'm sowwy</p>
             } 
 
-            <Link to="/cartcheckout">Checkout</Link>
+            {/* Scratch */}
+            <div>
+            </div>
+
+
+          
            
+
         </div>
     )
         

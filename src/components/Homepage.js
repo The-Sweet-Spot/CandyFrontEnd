@@ -20,7 +20,9 @@ const Homepage = () => {
         sweetsState: [sweets, setSweets],
         cartItemsState: [myCartItems, setMyCartItems]
     }
-console.log("HI im from the homepage", myCart);
+
+
+
 
     const navigate = useNavigate()
 
@@ -38,18 +40,76 @@ console.log("HI im from the homepage", myCart);
                         }
                     }
                 );
-                console.log("this is response", response)
+
                 const data = await response.json();
                 console.log("This is the profile data: ", data)
                 
                 setMyProfile(data.user)
+                console.log("line 47", myProfile)
                 } catch (error) {
                     console.log(error);
                 }
                 
             }
+            // async function fetchingCart() {
+            //     try {
+            //         console.log("this is my profile state", myProfile)
+            //         const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/${myProfile.id}`, {
+            //             method: "POST",
+            //             headers: {
+            //                 "Content-Type": "application/json",
+            //                 "Authorization": `Bearer ${localStorage.getItem("token")}`
+            //             },
+            //             body: JSON.stringify({
+            //                 usersId: myProfile.id,
+            //                 active: true
+            //             })
+                
+            //         })
+                    
+            //         console.log("response", response)
+    
+            //         const data = await response.json()
+            //         console.log("this is create cart data",data)
+            //         setMyCart(data)
+            //     } catch(error) {
+            //         console.log(error)
+            //     }
+            // }
+            console.log("now runnin gfetch profile func")
             fetchProfileData();
+            // console.log("now running fetching cart func")
+            // fetchingCart();
         }, [])
+    useEffect(() => {
+
+        async function fetchingCart() {
+            try {
+                
+                const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/mycart`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    },
+                    body: JSON.stringify({
+                        usersId: myProfile.id,
+                        active: true
+                    })
+            
+                })
+                
+                // console.log("response", response)
+
+                const data = await response.json()
+                console.log("this is create cart data",data)
+                setMyCart(data)
+            } catch(error) {
+                console.log(error)
+            }
+        }
+        fetchingCart()
+    }, []);
 
     useEffect(() => {
         async function getAllSweets(){
@@ -67,97 +127,71 @@ console.log("HI im from the homepage", myCart);
             const allCandyGoods = pleaseFetch.filter(oneSweet => {
                 return oneSweet.departmentId === 2
             })
-            console.log(pleaseFetch)
-            console.log("both baked and candy", allBakedGoods, allCandyGoods)
             setBakery(allBakedGoods)
             setCandy(allCandyGoods)
         }
         getAllSweets()
     },[])
 
-    // orderItems
-    useEffect(() => {
-
-        console.log("fetching my cart")
-        async function fetchingCart() {
-            try {
-                console.log("Start of create cart try block")
-            const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${localStorage.getItem("token")}`
-                },
-                body: JSON.stringify({
-                    usersId: myProfile.id,
-                    active: true
-                })
-            
-            })
-            console.log("this is create cart response", response)
-            // console.log("response", response)
-
-            const data = await response.json()
-            console.log("this is create cart data",data)
-            setMyCart(data)
-        } catch(error) {
-            console.log(error)
-        }
-
-        }
-        fetchingCart()
-
-        console.log("Start of my cartitems")
-        async function fetchingMyCartItems() {
-            try {
-                console.log("Start of my cart try blcok")
-            const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cartitems/mycart`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${localStorage.getItem("token")}`
-                }
-            
-            })
-            console.log("this is the cart response", response)
-            // console.log("response", response)
-
-            const data = await response.json()
-            console.log("this is the cart data",data)
-            setMyCartItems(data)
-        } catch(error) {
-            console.error(error)
-        }
-
-        }
-        fetchingMyCartItems()
-    }, []);
-
+//     // orderItems
     // useEffect(() => {
-    //     if(!localStorage.getItem("token")) {
-    //         navigate("/login")
-    //     }
-    //         async function fetchProfileData() {
-    //             try {
-    //                 const response = await fetch('https://backend-sweet-spot.onrender.com/api/users/me',
-    //                 {
-    //                     headers: {
-    //                         "Content-Type": "application/json",
-    //                         "Authorization": `Bearer ${localStorage.getItem("token")}`
-    //                     }
-    //                 }
-    //             );
-    //             console.log("this is response", response)
-    //             const data = await response.json();
-    //             console.log("This is the profile data: ", data)
+
+    //     async function fetchingCart() {
+    //         try {
                 
-    //             setMyProfile(data.user)
-    //             } catch (error) {
-    //                 console.log(error);
-    //             }
+    //             const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/${myProfile.id}`, {
+    //                 method: "POST",
+    //                 headers: {
+    //                     "Content-Type": "application/json",
+    //                     "Authorization": `Bearer ${localStorage.getItem("token")}`
+    //                 },
+    //                 body: JSON.stringify({
+    //                     usersId: myProfile.user.id,
+    //                     active: true
+    //                 })
+            
+    //             })
                 
+    //             // console.log("response", response)
+
+    //             const data = await response.json()
+    //             console.log("this is create cart data",data)
+    //             setMyCart(data)
+    //         } catch(error) {
+    //             console.log(error)
     //         }
-    //         fetchProfileData();
-    //     }, [])
+    //     }
+    //     fetchingCart()
+    // }, []);
+
+useEffect(() => {
+    console.log("is use effect being trigger for cart items hook")
+    async function fetchingMyCartItems() {
+        try {
+            console.log("Start of my cart try blcok")
+        const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cartitems/mycartitems`, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            }
+        
+        })
+        console.log("this is the cartitems response", response)
+        // console.log("response", response)
+
+        const data = await response.json()
+        console.log("this is the cart data",data)
+        setMyCartItems(data)
+    } catch(error) {
+        console.error(error)
+    }
+
+    }
+    fetchingMyCartItems()
+    console.log("end of cart items hooks")
+}, [])
+
+  
 
 
 
