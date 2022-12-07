@@ -23,7 +23,7 @@ const BakeryDetail = () => {
 useEffect (() => {
     async function bakedDetailFetch(){
     const bakedDetailFetch = await fetch(`https://backend-sweet-spot.onrender.com/api/sweets/${sweetsId}`, {
-        header:{
+        headers:{
             'Content-Type' : 'application/json'
         }
     })
@@ -51,11 +51,11 @@ async function addToCart() {
                 price_bought_at: moreBakeryDetail.price
             })
         })
-        console.log ("DATATATAT 1", myProfile )
-        console.log ("DATATATAT 2", myProfile.id )
-        console.log ("DATATATAT 3", moreBakeryDetail.price )
-        console.log ("DATATATAT 4", myCart )
-        console.log("Hi")
+
+        console.log ("DATATATAT 1", myProfile.id )
+        console.log ("DATATATAT 2", moreBakeryDetail.price )
+        console.log ("DATATATAT 3", myCart )
+
         
         const translatedItemData = await addingItems.json();
         console.log("translated item data:", translatedItemData)
@@ -90,7 +90,7 @@ async function addToCart() {
                 <img src={moreBakeryDetail.image} id="bakery-detail-image" ></img>:
                 <p>Description can not be viewed</p>
             }
-            <button onClick={addToCart }>Add To Cart</button>
+            <button onClick={addToCart}>Add To Cart</button>
             {/* <button onClick={() => handleClick(sweetsId, moreBakeryDetail.sweetsName)}>Add to Cart</button> */}
             
         </div>
