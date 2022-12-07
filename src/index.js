@@ -12,6 +12,7 @@ import Profile from "./components/Profile";
 import BakeryDetail from "./components/BakeryDetail";
 import CandyDetail from "./components/CandyDetail";
 import Cart from "./components/Cart";
+import CartCheckout from "./components/CartCheckout";
 import CartItems from "./components/CartItems";
 import AddCartItemToCart from "./components/addCartItemToCart";
 
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
             {
                 path: "/cart/:sweetsId",
                 element: <CartItems />
+            }, 
+            {
+                path: "/cartcheckout",
+                element: <CartCheckout />
             }, 
         ]
     }
