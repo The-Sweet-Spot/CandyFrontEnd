@@ -64,9 +64,15 @@ const Cart = () => {
                     </div>
             }): <p>There is an error loading your things, I'm sowwy</p>
             } 
+
             {/* Scratch */}
             <div>
             </div>
+
+
+          
+           
+
         </div>
     )
         
