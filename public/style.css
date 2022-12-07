@@ -372,3 +372,50 @@ body {
     border-radius: 50%;
     margin-bottom: 5px;
 }
+#cartitems-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+    margin-left: 50px;
+    margin-right: 50px;
+    background-image: url("https://static.vecteezy.com/system/resources/previews/003/590/927/original/3d-studio-room-abstract-vertical-lines-striped-candy-blue-perspective-floor-and-background-vector.jpg");
+    border-top: 4px solid rgb(70, 133, 252);
+    border-left: 4px solid rgb(70, 133, 252);
+    border-bottom: 4px solid rgb(112, 200, 252);
+    border-right: 4px solid rgb(112, 200, 252);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+#cart-items-list {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 2px solid black;
+    box-shadow: 10px 10px 30px rgb(68, 67, 67);
+    padding-left: 60px;
+    padding-right: 60px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 1000;
+    color: rgb(74, 74, 197);
+}
+#cart-items {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 10px 10px 30px rgb(68, 67, 67);
+    padding-left: 60px;
+    padding-right: 60px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 1000;
+    color: rgb(74, 74, 197);
+}
+#cart-image {
+    
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+    align-items: center;
+}
