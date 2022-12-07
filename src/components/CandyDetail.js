@@ -4,6 +4,8 @@ import { Link, useNavigate, useOutletContext, useParams } from "react-router-dom
 const CandyDetail = () => {
     // const [candy, setCandy] = useState([]);
     const [candyDetail, setCandyDetail] = useState({});
+    const {cartState: [myCart, setMyCart]} = useOutletContext()
+    const {profileState: [myProfile, setMyProfile]} = useOutletContext()
     const navigate = useNavigate();
     const { sweetsId } = useParams()
 console.log("sweets id", sweetsId)
@@ -29,7 +31,38 @@ console.log("sweets id", sweetsId)
     },[])
     // const moreDetailedPost = postsOutletContext[0][candyId]
     // console.log(candy)
-
+    async function addToCart() {
+        console.log("running at cart function:")
+        try {
+    
+            console.log("Start of try")
+            const addingItems = await fetch(`https://backend-sweet-spot.onrender.com/api/cartitems/add/${sweetsId}`,{
+                method: "POST",
+                headers:{
+                    'Content-Type' : 'application/json',
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify({
+                    cartId: myCart.cartId,
+                    usersId: myProfile.id,
+                    price_bought_at: candyDetail.price
+                })
+            })
+    
+            console.log ("DATATATAT 1", myProfile.id )
+            console.log ("DATATATAT 2", myProfile.price )
+            console.log ("DATATATAT 3", myCart )
+    
+            
+            const translatedItemData = await addingItems.json();
+            console.log("translated item data:", translatedItemData)
+                // console.log("adding items:", addingItems)
+            // return addingItems;
+        } catch (error) {
+            console.log(error)
+                
+        }
+    }
 
     return (
         <div id="candy-detail-container">
@@ -38,9 +71,6 @@ console.log("sweets id", sweetsId)
                 <p id="candy-detail">{candyDetail.sweetsName}</p>:
                 <p>Description can not be viewed</p>
             }
-            {/* {
-                <img src={indivCandy.image}></img>
-            } */}
             {
                 candyDetail.description ?
                 <p id="candy-detail">{candyDetail.description}</p>:
@@ -56,8 +86,7 @@ console.log("sweets id", sweetsId)
                 <img src={candyDetail.image} id="candy-detail-image"></img>:
                 <p>Description can not be viewed</p>
             }
-                {/* add to order button
-                then refetch cart & order items*/}
+            <button onClick={addToCart}>Add To Cart</button>
         </div>
     )
 }
