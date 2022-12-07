@@ -2,7 +2,7 @@
 //this is where all outlet context go
 import React, { useState, useEffect} from "react";
 import Navbar from "./Navbar";
-import { Outlet, useNavigate, useOutletContext} from "react-router-dom"
+import { Outlet, useNavigate, useOutletContext, useParams} from "react-router-dom"
 
 
 const Homepage = () => {
@@ -23,108 +23,6 @@ const Homepage = () => {
 console.log("HI im from the homepage", myCart);
 
     const navigate = useNavigate()
-
-    useEffect(() => {
-        async function getAllSweets(){
-            const sweetsFetch = await fetch(`https://backend-sweet-spot.onrender.com/api/sweets`,{
-                headers: {
-                    'Content-Type' : 'application/json'
-                }
-            })
-            const pleaseFetch = await sweetsFetch.json();
-            console.log("this is the fetch for sweets", pleaseFetch)
-
-            const allBakedGoods = pleaseFetch.filter(oneSweet => {
-                return oneSweet.departmentId === 1
-            })
-            const allCandyGoods = pleaseFetch.filter(oneSweet => {
-                return oneSweet.departmentId === 2
-            })
-            console.log(pleaseFetch)
-            console.log("both baked and candy", allBakedGoods, allCandyGoods)
-            setBakery(allBakedGoods)
-            setCandy(allCandyGoods)
-        }
-        getAllSweets()
-    },[])
-console.log ("HELPPPP CART")
-    // useEffect(() => {
-    //     console.log("CREATING a cart")
-    //     async function fetchingCart() {
-    //         try {
-    //             console.log("Start of create cart try block")
-    //         const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart`, {
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //                 "Authorization": `Bearer ${localStorage.getItem("token")}`
-    //             }
-            
-    //         })
-    //         console.log("this is create cart response", response)
-    //         // console.log("response", response)
-
-    //         const data = await response.json()
-    //         console.log("this is create cart data",data)
-    //         setMyCart(data)
-    //     } catch(error) {
-    //         console.log(error)
-    //     }
-
-    //     }
-    //     fetchingCart()
-    // }, []);
-
-    // orderItems
-    useEffect(() => {
-
-        console.log("CREATING a cart")
-        async function fetchingCart() {
-            try {
-                console.log("Start of create cart try block")
-            const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${localStorage.getItem("token")}`
-                }
-            
-            })
-            console.log("this is create cart response", response)
-            // console.log("response", response)
-
-            const data = await response.json()
-            console.log("this is create cart data",data)
-            setMyCart(data)
-        } catch(error) {
-            console.log(error)
-        }
-
-        }
-        fetchingCart()
-
-        console.log("Start of my cart")
-        async function fetchingMyCartItems() {
-            try {
-                console.log("Start of my cart try blcok")
-            const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cartitems/mycart`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${localStorage.getItem("token")}`
-                }
-            
-            })
-            console.log("this is the cart response", response)
-            // console.log("response", response)
-
-            const data = await response.json()
-            console.log("this is the cart data",data)
-            setMyCartItems(data)
-        } catch(error) {
-            console.error(error)
-        }
-
-        }
-        fetchingMyCartItems()
-    }, []);
 
     useEffect(() => {
         if(!localStorage.getItem("token")) {
@@ -153,10 +51,90 @@ console.log ("HELPPPP CART")
             fetchProfileData();
         }, [])
 
+    useEffect(() => {
+        async function getAllSweets(){
+            const sweetsFetch = await fetch(`https://backend-sweet-spot.onrender.com/api/sweets`,{
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            })
+            const pleaseFetch = await sweetsFetch.json();
+            console.log("this is the fetch for sweets", pleaseFetch)
+
+            const allBakedGoods = pleaseFetch.filter(oneSweet => {
+                return oneSweet.departmentId === 1
+            })
+            const allCandyGoods = pleaseFetch.filter(oneSweet => {
+                return oneSweet.departmentId === 2
+            })
+            console.log(pleaseFetch)
+            console.log("both baked and candy", allBakedGoods, allCandyGoods)
+            setBakery(allBakedGoods)
+            setCandy(allCandyGoods)
+        }
+        getAllSweets()
+    },[])
+
+    // orderItems
+    useEffect(() => {
+
+        console.log("fetching my cart")
+        async function fetchingCart() {
+            try {
+                console.log("Start of create cart try block")
+            const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify({
+                    usersId: myProfile.id,
+                    active: true
+                })
+            
+            })
+            console.log("this is create cart response", response)
+            // console.log("response", response)
+
+            const data = await response.json()
+            console.log("this is create cart data",data)
+            setMyCart(data)
+        } catch(error) {
+            console.log(error)
+        }
+
+        }
+        fetchingCart()
+
+        console.log("Start of my cartitems")
+        async function fetchingMyCartItems() {
+            try {
+                console.log("Start of my cart try blcok")
+            const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cartitems/mycart`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                }
+            
+            })
+            console.log("this is the cart response", response)
+            // console.log("response", response)
+
+            const data = await response.json()
+            console.log("this is the cart data",data)
+            setMyCartItems(data)
+        } catch(error) {
+            console.error(error)
+        }
+
+        }
+        fetchingMyCartItems()
+    }, []);
 
     // useEffect(() => {
     //     if(!localStorage.getItem("token")) {
-    //         navigate('/login')
+    //         navigate("/login")
     //     }
     //         async function fetchProfileData() {
     //             try {
@@ -168,9 +146,11 @@ console.log ("HELPPPP CART")
     //                     }
     //                 }
     //             );
+    //             console.log("this is response", response)
     //             const data = await response.json();
     //             console.log("This is the profile data: ", data)
-    //             setMyProfile(data)
+                
+    //             setMyProfile(data.user)
     //             } catch (error) {
     //                 console.log(error);
     //             }
@@ -178,6 +158,9 @@ console.log ("HELPPPP CART")
     //         }
     //         fetchProfileData();
     //     }, [])
+
+
+
 
 
     return (
