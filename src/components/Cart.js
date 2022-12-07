@@ -34,13 +34,24 @@ const Cart = () => {
     //     }
     //     fetchingCart()
     // }, []);
-async function seeCartItems() {
-    try {
-        const response = await fetch (``)
-    } catch (error) {
-        console.error(error)
-    }
-}
+// async function deleteCartItemsFromCart(cartItemsId) {
+//     try {
+//         const response = await fetch (`https://backend-sweet-spot.onrender.com/api/cartitems/${cartItemsId}`, {
+//             method: "DELETE",
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'Authorization': `Bearer ${localStorage.getItem("token")}`
+//             }
+//         })
+//         const data = await response.json()
+//         setMyCartItems(myCartItems.filter((items) => {
+//             return items.cartItemsId != cartItemsId
+//         }))
+//     } catch (error) {
+//         console.error(error)
+//     }
+
+// }
 
     return (
         <div>
@@ -49,7 +60,7 @@ async function seeCartItems() {
             myCartItems.length ? myCartItems.map((cartItems, idx) =>{
                 return <div key={idx}>
                     <p>Your items: {cartItems.cartItemsId}</p>
-                    <div><Link to={`cart/${cartItems.cartItemsId}`}>Items in your cart</Link></div>
+                    
                     </div>
             }): <p>There is an error loading your things, I'm sowwy</p>
             } 
@@ -70,3 +81,6 @@ async function seeCartItems() {
 
 
 export default Cart
+{/* <button onClick={(e) => {
+                        e.preventDefault()
+                        deleteCartItemsFromCart(items.cartItemsId)}}>Remove from cart</button> */}

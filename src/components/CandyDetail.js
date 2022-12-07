@@ -51,7 +51,7 @@ console.log("sweets id", sweetsId)
                 <p id="candy-detail">${candyDetail.price}</p>:
                 <p>Description can not be viewed</p>
             }
-              {
+            {
                 candyDetail.image ?
                 <img src={candyDetail.image} id="candy-detail-image"></img>:
                 <p>Description can not be viewed</p>
@@ -61,5 +61,5 @@ console.log("sweets id", sweetsId)
         </div>
     )
 }
-   
+
 export default CandyDetail;
