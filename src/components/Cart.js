@@ -64,14 +64,9 @@ const Cart = () => {
                     </div>
             }): <p>There is an error loading your things, I'm sowwy</p>
             } 
-            {/* Scratch */}
-            <div>
-                <p>
 
-                </p>
-
-
-            </div>
+            <Link to="/cartcheckout">Checkout</Link>
+           
         </div>
     )
         
