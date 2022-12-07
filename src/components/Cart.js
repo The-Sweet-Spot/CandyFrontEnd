@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useOutletContext, useParams, Link } from "react-router-dom"
 import CartItems from "./CartItems"
-import { FaBeer } from "react-icons/fa"
+//import { FaBeer } from "react-icons/fa"
 
 
 const Cart = () => {
