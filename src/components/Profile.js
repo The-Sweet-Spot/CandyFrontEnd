@@ -7,39 +7,39 @@ const Profile = () => {
     
     const navigate = useNavigate()
 
-    useEffect(() => {
-        if(!localStorage.getItem("token")) {
-            navigate("/login")
-        }
-            async function fetchProfileData() {
-                try {
-                    const response = await fetch('https://backend-sweet-spot.onrender.com/api/users/me',
-                    {
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Authorization": `Bearer ${localStorage.getItem("token")}`
-                        }
-                    }
-                );
-                console.log("this is response", response)
-                const data = await response.json();
-                console.log("This is the profile data: ", data)
+    // useEffect(() => {
+    //     if(!localStorage.getItem("token")) {
+    //         navigate("/login")
+    //     }
+    //         async function fetchProfileData() {
+    //             try {
+    //                 const response = await fetch('https://backend-sweet-spot.onrender.com/api/users/me',
+    //                 {
+    //                     headers: {
+    //                         "Content-Type": "application/json",
+    //                         "Authorization": `Bearer ${localStorage.getItem("token")}`
+    //                     }
+    //                 }
+    //             );
+    //             console.log("this is response", response)
+    //             const data = await response.json();
+    //             console.log("This is the profile data: ", data)
                 
-                setMyProfile(data.user)
-                } catch (error) {
-                    console.log(error);
-                }
+    //             setMyProfile(data.user)
+    //             } catch (error) {
+    //                 console.log(error);
+    //             }
                 
-            }
-            fetchProfileData();
-        }, [])
+    //         }
+    //         fetchProfileData();
+    //     }, [])
         
     
     function logOut(event) {
         localStorage.removeItem("token");
         navigate("/")
     }
-    console.log("other", myProfile)
+
     return (
         
         <div id="profile-container">
