@@ -6,6 +6,7 @@ const BakeryDetail = () => {
     const {bakeryState: [bakery, setBakery]} = useOutletContext()
     const {profileState: [myProfile, setMyProfile]} = useOutletContext()
     const {cartState: [myCart, setMyCart]} = useOutletContext()
+    const {cartItemsState: [myCartItems, setMyCartItems]} = useOutletContext()
 
 
     const [moreBakeryDetail, setMoreBakeryDetail] = useState({})
@@ -51,20 +52,54 @@ async function addToCart() {
                 price_bought_at: moreBakeryDetail.price
             })
         })
+        const success = await addingItems.json()
+        if(success) {
+            try {
+                const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/myexsistingcart`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    },
+                    body: JSON.stringify({
+                        usersId: myProfile.id,
+                        active: true
+                    })
+                })
+                
+                    console.log("Start of my cart try blcok")
+                const responseCartItems = await fetch(`https://backend-sweet-spot.onrender.com/api/cartitems/mycartitems`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    }
+                
+                })
+                console.log("this is the cartitems response", responseCartItems)
+                // console.log("response", response)
+        
+                const cartItemsData = await responseCartItems.json()
+                console.log("this is the cart data",cartItemsData)
+                setMyCartItems(cartItemsData)
 
-        console.log ("DATATATAT 1", myProfile.id )
-        console.log ("DATATATAT 2", moreBakeryDetail.price )
-        console.log ("DATATATAT 3", myCart )
+                const cartData = await response.json()
+                if(cartData) {
+                setMyCart(cartData)
+                navigate("/bakery")
+             
+                
+            }
+            } catch (error) {
+                console.log(error)
+            }} else ({
+                message: "No good imposter"
+            })
 
         
-        const translatedItemData = await addingItems.json();
-        console.log("translated item data:", translatedItemData)
-        navigate("/bakery")
             // console.log("adding items:", addingItems)
         // return addingItems;
     } catch (error) {
         console.log(error)
-            
     }
 }
 

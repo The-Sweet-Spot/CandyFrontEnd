@@ -8,55 +8,26 @@ const CartCheckout = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");  
     const [address, setAddress] = useState("");  
-
-    function handleFirstName (event) {
-        console.log(event.target.value)
-        setFirstName(event.target.value); 
-    }
-
-    function handleLastName (event) {
-        console.log(event.target.value)
-        setLastName(event.target.value); 
-    }
-
-    function handleAddress (event) {
-        console.log(event.target.value)
-        setAddress(event.target.value); 
-    }
-
-    // Payment Form
     const [cardNumber, setCardNumber] = useState("");  
     const [expiration, setExpiration] = useState("");  
     const [securityCode, setSecurityCode] = useState("");  
     const [billingAddress, setBillingAddress] = useState("");  
     const {cartState: [mycart, setMyCart]} = useOutletContext()
     const {profileState: [myProfile, setMyProfile]} = useOutletContext();
+    const navigate = useNavigate()
 
-    function handleCardNumber(event) {
-        
-        console.log(event.target.value)
-        setCardNumber(event.target.value)
-    }
 
-    function handleExpiration (event) {
-        console.log(event.target.value)
-        setExpiration(event.target.value); 
-    }
 
-    function handleSecurityCode (event) {
+    function handleInputChange(event,setter) {
         console.log(event.target.value)
-        setSecurityCode(event.target.value); 
-    }
-
-    function handleBillingAddress (event) {
-        console.log(event.target.value)
-        setBillingAddress(event.target.value); 
+        setter(event.target.value); 
     }
 
         async function checkOut(event) {
             event.preventDefault(); 
             console.log("checkOut function")
-            if(cardNumber.length  === 16 && securityCode.length === 3 && new Date() < expiration) {
+            console.log("new date and expiration", Date.now(), Date.parse(expiration))
+            if(cardNumber.length  === 16 && securityCode.length === 3 && Date.now() < Date.parse(expiration)) {
                 console.log("this is starting the check out process")
                 try {
                     const responseForStatus = await fetch('https://backend-sweet-spot.onrender.com/api/cart/updateCart', {
@@ -70,6 +41,10 @@ const CartCheckout = () => {
                             active: false
                         })
                     });
+                    const statusData = await responseForStatus.json()
+                    console.log("status update", statusData)
+                    
+                    
                     const responseForNewCart = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/newusercart`, {
                         method: "POST",
                         headers: {
@@ -82,9 +57,12 @@ const CartCheckout = () => {
                         })
                 
                     })
-            
+        
+                    const newCartData = await responseForNewCart.json()
+                    console.log("new cart", newCartData)
                 console.log("this was successfully checked out! but you are an imposter")
-                
+                setMyCart(newCartData)
+                    navigate("/profile")
             } catch (error) {
                 console.log(error); 
             }
@@ -97,13 +75,13 @@ const CartCheckout = () => {
             <form onSubmit={(event) => {checkOut(event, setMyCart)}} id="checkout-form">
             <h1>Verify Address Info</h1>
                 <label id="checkout">First Name: </label>
-                <input type="text" value={firstName} onChange={handleFirstName} id="checkout"></input>
+                <input type="text" value={firstName} onChange={(event) => {handleInputChange(event, setFirstName)}} id="checkout"></input>
 
                 <label id="checkout">Last Name: </label>
-                <input type="text" value={lastName} onChange={handleLastName} id="checkout"></input>
+                <input type="text" value={lastName} onChange={(event) => {handleInputChange(event, setLastName)}} id="checkout"></input>
 
                 <label id="checkout">Address: </label>
-                <input type="text" value={address} onChange={handleAddress} id="checkout"></input>
+                <input type="text" value={address} onChange={(event) => {handleInputChange(event, setAddress)}} id="checkout"></input>
                 
                 
 
@@ -112,16 +90,16 @@ const CartCheckout = () => {
             <h1>Add Payment Info</h1>
 
                 <label id="checkout">Card Number: </label>
-                <input type="number" value={cardNumber} onChange={handleCardNumber} id="checkout"></input>
+                <input type="text" value={cardNumber} onChange={(event) => {handleInputChange(event, setCardNumber)}} id="checkout"></input>
 
                 <label id="checkout">Expiration Date: </label>
-                <input type="date" value={expiration} onChange={handleExpiration} id="checkout"></input>
+                <input type="date" value={expiration} onChange={(event) => {handleInputChange(event, setExpiration)}} id="checkout"></input>
 
                 <label id="checkout">Security Code: </label>
-                <input type="number" value={securityCode} onChange={handleSecurityCode} id="checkout"></input>
+                <input type="text" value={securityCode} onChange={(event) => {handleInputChange(event, setSecurityCode)}} id="checkout"></input>
 
                 <label id="checkout">Billing Address: </label>
-                <input type="checkbox" value={billingAddress} onChange={handleBillingAddress} id="checkout"></input>
+                <input type="checkbox" value={billingAddress} onChange={(event) => {handleInputChange(event, setBillingAddress)}} id="checkout"></input>
                 
                 <button type="submit" id="checkout">Enter</button>
 

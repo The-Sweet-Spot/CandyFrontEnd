@@ -59,8 +59,17 @@ body {
     font-size: 32px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 1000;
-
 }
+#navbar-text:visited {
+    color: rgb(158, 47, 158);
+}
+#navbar-text:hover {
+    background-color: rgba(173, 216, 230, 0.5);
+}
+#navbar-text:active {
+    color: rgb(82, 144, 194);
+}
+
 #login-form {
     display: flex;
     flex-direction: column;
@@ -412,6 +421,7 @@ body {
     font-weight: 1000;
     color: rgb(74, 74, 197);
     font-size: 28px;
+    border-bottom: 2px solid rgb(74, 74, 197);
 }
 #cart-items {
     display: flex;
@@ -423,6 +433,21 @@ body {
     font-family: 'Courier New', Courier, monospace;
     font-weight: 1000;
     color: rgb(74, 74, 197);
+    border-bottom: 2px solid rgb(74, 74, 197);
+}
+#cart-items2 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 10px 10px 10px rgb(68, 67, 67);
+    padding-left: 60px;
+    padding-right: 60px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 1000;
+    font-size: 28px;
+    color: rgb(74, 74, 197);
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 #cart-items-remove{
     background-color: rgb(184, 64, 64);
