@@ -76,7 +76,7 @@ const Homepage = () => {
             //         console.log(error)
             //     }
             // }
-            console.log("now runnin gfetch profile func")
+            console.log("now running fetch profile func")
             fetchProfileData();
             // console.log("now running fetching cart func")
             // fetchingCart();
