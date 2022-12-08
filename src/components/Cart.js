@@ -55,7 +55,7 @@ const Cart = () => {
 
 async function deleteCartItemsFromCart(cartItemsId) {
     try {
-        const response = await fetch (`https://backend-sweet-spot.onrender.com/api/cartitems/${cartItemsId}`, {
+        const response = await fetch (`http://localhost:3001/api/cartitems/${cartItemsId}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ async function deleteCartItemsFromCart(cartItemsId) {
         const {success: [deletedItem, isDeleted]} = await response.json()
         if(isDeleted) {
             try {
-                const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/myexsistingcart`, {
+                const response = await fetch(`http://localhost:3001/api/cart/myexsistingcart`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -78,7 +78,7 @@ async function deleteCartItemsFromCart(cartItemsId) {
                 })
                 
                     console.log("Start of my cart try blcok")
-                const responseCartItems = await fetch(`https://backend-sweet-spot.onrender.com/api/cartitems/mycartitems`, {
+                const responseCartItems = await fetch(`http://localhost:3001/api/cartitems/mycartitems`, {
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${localStorage.getItem("token")}`
