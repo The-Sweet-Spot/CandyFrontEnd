@@ -59,6 +59,7 @@ async function addToCart() {
         
         const translatedItemData = await addingItems.json();
         console.log("translated item data:", translatedItemData)
+        navigate("/bakery")
             // console.log("adding items:", addingItems)
         // return addingItems;
     } catch (error) {

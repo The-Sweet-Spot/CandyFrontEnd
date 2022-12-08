@@ -56,6 +56,7 @@ console.log("sweets id", sweetsId)
             
             const translatedItemData = await addingItems.json();
             console.log("translated item data:", translatedItemData)
+            navigate("/candy")
                 // console.log("adding items:", addingItems)
             // return addingItems;
         } catch (error) {

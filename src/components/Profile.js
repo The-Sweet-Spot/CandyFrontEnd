@@ -45,10 +45,12 @@ const Profile = () => {
         <div id="profile-container">
             { 
             myProfile.username && !!myProfile.username.length ? 
-            <h3 id="profile-text">Welcome {myProfile.username}</h3> :
+            <h3 id="profile-text">Welcome {myProfile.username}</h3>:
             <p>There is an error loading your things, I'm sowwy</p>
             } 
-            <p>View your cart <Link to ="/cart/:userId"> CART</Link></p>
+            <h4 id="profile-text2">Please explore our great selections of baked goods and candy</h4>
+            <p id="profile-text2">And when you've had your fill, click the bag below to check out</p>
+            <p><Link to ="/cart/:userId"><img src="https://www.creativefabrica.com/wp-content/uploads/2018/11/Shopping-bag-vector-logo-by-hartgraphic-580x386.jpg" id="cart-icon"></img></Link></p>
             {/* {
                 myProfile.length ? myProfile.map((user, idx) => {
                     return <div key={idx} id="profile-text">
@@ -58,7 +60,7 @@ const Profile = () => {
                 
             } */}
             <div>
-                <button onClick={logOut}>Log Out</button>
+                <button onClick={logOut} id="logout">Log Out</button>
             </div>
         </div>
     )

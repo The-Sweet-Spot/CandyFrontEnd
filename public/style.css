@@ -342,6 +342,7 @@ body {
     margin-top: 200px;
     margin-left: 50px;
     margin-right: 50px;
+    padding: 30px;
     background-image: url("https://static.vecteezy.com/system/resources/previews/003/590/927/original/3d-studio-room-abstract-vertical-lines-striped-candy-blue-perspective-floor-and-background-vector.jpg");
     border-top: 4px solid rgb(70, 133, 252);
     border-left: 4px solid rgb(70, 133, 252);
@@ -352,6 +353,17 @@ body {
     background-attachment: fixed;
 }
 #profile-text{
+    display: flex;
+    box-shadow: 10px 10px 30px rgb(68, 67, 67);
+    padding-left: 60px;
+    padding-right: 60px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 1000;
+    font-size: 28px;
+    color: rgb(74, 74, 197);
+}
+
+#profile-text2 {
     display: flex;
     box-shadow: 10px 10px 30px rgb(68, 67, 67);
     padding-left: 60px;
@@ -392,17 +404,96 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    border: 2px solid black;
-    box-shadow: 10px 10px 30px rgb(68, 67, 67);
+    align-items: center;
+    /* box-shadow: 10px 10px 30px rgb(68, 67, 67); */
+    padding-left: 60px;
+    padding-right: 60px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 1000;
+    color: rgb(74, 74, 197);
+    font-size: 28px;
+}
+#cart-items {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 10px 10px 10px rgb(68, 67, 67);
     padding-left: 60px;
     padding-right: 60px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 1000;
     color: rgb(74, 74, 197);
 }
-#cart-items {
+#cart-items-remove{
+    background-color: rgb(184, 64, 64);
+    border-radius: 45%;
+    padding: 5px;
+    margin-bottom: 5%;
+    border-color: rgb(184, 64, 64);
+    box-shadow: 10px 10px 10px rgb(68, 67, 67);
+}
+#cart-image {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+    align-items: center;
+    box-shadow: 10px 10px 10px rgb(68, 67, 67);
+    border-color: rgb(74, 74, 197);
+}
+#cart-icon {
+height: 40px;
+width: 40px;
+border: 2px solid rgb(74, 74, 197);
+border-radius: 50%;
+box-shadow: 10px 10px 10px rgb(68, 67, 67);
+}
+#logout {
+    background-color: rgb(184, 64, 64);
+    border-radius: 45%;
+    padding: 5px;
+    margin-bottom: 5%;
+    border-color: rgb(184, 64, 64);
+    box-shadow: 10px 10px 10px rgb(68, 67, 67);
+}
+#title {
+    color: rgb(74, 74, 197);
+    font-size: 48px;
+    border-top: 4px solid rgb(70, 133, 252);
+    border-left: 4px solid rgb(70, 133, 252);
+    border-bottom: 4px solid rgb(112, 200, 252);
+    border-right: 4px solid rgb(112, 200, 252);
+}
+#checkout-button {
+    background-color: rgb(70, 133, 252);
+    border-radius: 45%;
+    padding: 20px;
+    margin-bottom: 5%;
+    border-color: rgb(70, 133, 252);
+    box-shadow: 10px 10px 10px rgb(68, 67, 67);
+}
+#checkout-form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+    margin-left: 50px;
+    margin-right: 50px;
+    background-image: url("https://static.vecteezy.com/system/resources/previews/003/590/927/original/3d-studio-room-abstract-vertical-lines-striped-candy-blue-perspective-floor-and-background-vector.jpg");
+    border-top: 4px solid rgb(70, 133, 252);
+    border-left: 4px solid rgb(70, 133, 252);
+    border-bottom: 4px solid rgb(112, 200, 252);
+    border-right: 4px solid rgb(112, 200, 252);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+#checkout-form{
+    display: flex;
     flex-direction: column;
     box-shadow: 10px 10px 30px rgb(68, 67, 67);
     padding-left: 60px;
@@ -411,11 +502,10 @@ body {
     font-weight: 1000;
     color: rgb(74, 74, 197);
 }
-#cart-image {
-    
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-bottom: 5px;
+#checkout {
+    display: flex;
+    justify-content: center;
     align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
 }

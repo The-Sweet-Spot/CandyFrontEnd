@@ -25,11 +25,11 @@ const CartCheckout = () => {
     }
 
     // Payment Form
-    const [cardNumber, setCardNumber] = useState(0);  
+    const [cardNumber, setCardNumber] = useState("");  
     const [expiration, setExpiration] = useState("");  
     const [securityCode, setSecurityCode] = useState("");  
     const [billingAddress, setBillingAddress] = useState("");  
-
+    const {cartState: [mycart, setMyCart]} = useOutletContext()
     const {profileState: [myProfile, setMyProfile]} = useOutletContext();
 
     function handleCardNumber(event) {
@@ -53,9 +53,11 @@ const CartCheckout = () => {
         setBillingAddress(event.target.value); 
     }
 
-        async function checkOut() {
-            // event.preventDefault(); 
+        async function checkOut(event) {
+            event.preventDefault(); 
+            console.log("checkOut function")
             if(cardNumber.length  === 16 && securityCode.length === 3 && new Date() < expiration) {
+                console.log("this is starting the check out process")
                 try {
                     const responseForStatus = await fetch('https://backend-sweet-spot.onrender.com/api/cart/updateCart', {
                         method: "PATCH",
@@ -68,7 +70,7 @@ const CartCheckout = () => {
                             active: false
                         })
                     });
-                    const responseForNewCart = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/mycart`, {
+                    const responseForNewCart = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/newusercart`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -90,39 +92,38 @@ const CartCheckout = () => {
     }
 
     return (
-        <div>
+        <div id="checkout-form-container">
             {/* Shipping Form */}
+            <form onSubmit={(event) => {checkOut(event, setMyCart)}} id="checkout-form">
             <h1>Verify Address Info</h1>
-            <form onSubmit={checkOut}>
-                <label>First Name: </label>
-                <input type="text" value={firstName} onChange={handleFirstName}></input>
+                <label id="checkout">First Name: </label>
+                <input type="text" value={firstName} onChange={handleFirstName} id="checkout"></input>
 
-                <label>Last Name: </label>
-                <input type="text" value={lastName} onChange={handleLastName}></input>
+                <label id="checkout">Last Name: </label>
+                <input type="text" value={lastName} onChange={handleLastName} id="checkout"></input>
 
-                <label>Address: </label>
-                <input type="text" value={address} onChange={handleAddress}></input>
+                <label id="checkout">Address: </label>
+                <input type="text" value={address} onChange={handleAddress} id="checkout"></input>
                 
-                <button type="submit">Next</button>
+                
 
-            </form>
 
             {/* Payment Form */}
             <h1>Add Payment Info</h1>
-            <form onSubmit={checkOut}>
-                <label>Card Number: </label>
-                <input type="number" value={cardNumber} onChange={handleCardNumber}></input>
 
-                <label>Expiration Date: </label>
-                <input type="date" value={expiration} onChange={handleExpiration}></input>
+                <label id="checkout">Card Number: </label>
+                <input type="number" value={cardNumber} onChange={handleCardNumber} id="checkout"></input>
 
-                <label>Security Code: </label>
-                <input type="number" value={securityCode} onChange={handleSecurityCode}></input>
+                <label id="checkout">Expiration Date: </label>
+                <input type="date" value={expiration} onChange={handleExpiration} id="checkout"></input>
 
-                <label>Billing Address: </label>
-                <input type="checkbox" value={billingAddress} onChange={handleBillingAddress}></input>
+                <label id="checkout">Security Code: </label>
+                <input type="number" value={securityCode} onChange={handleSecurityCode} id="checkout"></input>
+
+                <label id="checkout">Billing Address: </label>
+                <input type="checkbox" value={billingAddress} onChange={handleBillingAddress} id="checkout"></input>
                 
-                <button type="submit">Next</button>
+                <button type="submit" id="checkout">Enter</button>
 
             </form>
         </div>

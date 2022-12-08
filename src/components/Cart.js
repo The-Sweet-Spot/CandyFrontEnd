@@ -58,7 +58,7 @@ async function deleteCartItemsFromCart(cartItemsId) {
 
     return (
         <div id="cartitems-container">
-            <h1>Your Cart</h1>
+            <h1 id="title">Cart</h1>
             { 
             myCartItems.length ? myCartItems.map((cartItems, idx) =>{
                 return <div key={idx} id="cart-items-list">
@@ -68,13 +68,13 @@ async function deleteCartItemsFromCart(cartItemsId) {
                     <br/>
                     <button onClick={(e) => {
                         e.preventDefault()
-                        deleteCartItemsFromCart(cartItems.cartItemsId)}} id="cart-items">Remove from cart</button>
+                        deleteCartItemsFromCart(cartItems.cartItemsId)}} id="cart-items-remove">Remove</button>
                     </div>
-            }): <p>There is an error loading your things, I'm sowwy</p>
+            }): <p>There is nothing in your Bag</p>
             } 
             {/* Scratch */}
             <div>
-            <button><Link to="/cartcheckout">Checkout</Link></button>
+            <button id="checkout-button"><Link to="/cartcheckout">Checkout</Link></button>
             </div>
         </div>
     )
