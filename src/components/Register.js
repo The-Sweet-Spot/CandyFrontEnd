@@ -8,8 +8,6 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("")
-    const {profileState: [myProfile, setMyProfile]} = useOutletContext()
-    const {cartState: [myCart, setMyCart]} = useOutletContext()
     const navigate = useNavigate();
     
 
