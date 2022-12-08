@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 
 const Register = () => {
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("")
+    const {profileState: [myProfile, setMyProfile]} = useOutletContext()
+    const {cartState: [myCart, setMyCart]} = useOutletContext()
     const navigate = useNavigate();
 
 useEffect(() => {
@@ -28,14 +30,59 @@ useEffect(() => {
             })
             const data = await response.json()
             localStorage.setItem("token", data.token)
-            console.log(data.token)
-            console.log(data)
+            console.log("data token made",data.token)
+            console.log("data made", data)
+        
+            const responseNewCart = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/newusercart`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify({
+                    usersId: myProfile.id,
+                    active: true
+                })
+        
+            })
+            console.log("new cart made")
+            // console.log("response", response)
 
+            const dataNewCart = await responseNewCart.json()
+            console.log("this is create cart data",dataNewCart)
+            setMyCart(dataNewCart)
             navigate("/profile")
         } catch (error) {
             console.log(error)
         }
     }
+    
+        // async function fetchingCart() {
+        //     try {
+                
+        //         const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/mycart`, {
+        //             method: "POST",
+        //             headers: {
+        //                 "Content-Type": "application/json",
+        //                 "Authorization": `Bearer ${localStorage.getItem("token")}`
+        //             },
+        //             body: JSON.stringify({
+        //                 usersId: myProfile.id,
+        //                 active: true
+        //             })
+            
+        //         })
+                
+        //         // console.log("response", response)
+
+        //         const data = await response.json()
+        //         console.log("this is create cart data",data)
+        //         setMyCart(data)
+        //     } catch(error) {
+        //         console.log(error)
+        //     }
+        //     fetchingCart()
+        // };
 
     const changeUsername = (event) => {
         setUsername(event.target.value)

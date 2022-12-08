@@ -25,11 +25,12 @@ const CartCheckout = () => {
     }
 
     // Payment Form
-    const [cardNumber, setCardNumber] = useState(0);  
+    const [cardNumber, setCardNumber] = useState("");  
     const [expiration, setExpiration] = useState("");  
     const [securityCode, setSecurityCode] = useState("");  
     const [billingAddress, setBillingAddress] = useState("");  
-
+    const {cartState: [myCart, setMyCart]} = useOutletContext();
+    const {cartItemsState: [cartItems, setMyCartItems]} = useOutletContext();
     const {profileState: [myProfile, setMyProfile]} = useOutletContext();
 
     function handleCardNumber(event) {
@@ -64,25 +65,28 @@ const CartCheckout = () => {
                             "Authorization": `Bearer ${localStorage.getItem("token")}`
                         },
                         body: JSON.stringify({
-                            usersId: myProfile.id,
+                            usersId: myProfile.usersId,
                             active: false
                         })
                     });
-                    const responseForNewCart = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/mycart`, {
+                    const responseForNewCart = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/newusercart`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                             "Authorization": `Bearer ${localStorage.getItem("token")}`
                         },
                         body: JSON.stringify({
-                            usersId: myProfile.id,
+                            usersId: myProfile.usersId,
                             active: true
                         })
                 
                     })
-            
+                const data = await responseForStatus.json()
+                const dataNewCart = await responseForNewCart.json()
+                console.log("getting data", data)
+                console.log("getting new cart data", dataNewCart)
                 console.log("this was successfully checked out! but you are an imposter")
-                
+
             } catch (error) {
                 console.log(error); 
             }
@@ -103,13 +107,10 @@ const CartCheckout = () => {
                 <label>Address: </label>
                 <input type="text" value={address} onChange={handleAddress}></input>
                 
-                <button type="submit">Next</button>
-
-            </form>
-
+        
             {/* Payment Form */}
             <h1>Add Payment Info</h1>
-            <form onSubmit={checkOut}>
+            
                 <label>Card Number: </label>
                 <input type="number" value={cardNumber} onChange={handleCardNumber}></input>
 
@@ -122,7 +123,7 @@ const CartCheckout = () => {
                 <label>Billing Address: </label>
                 <input type="checkbox" value={billingAddress} onChange={handleBillingAddress}></input>
                 
-                <button type="submit">Next</button>
+                <button type="submit">Enter</button>
 
             </form>
         </div>

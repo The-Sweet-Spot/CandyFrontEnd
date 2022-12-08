@@ -86,7 +86,7 @@ const Homepage = () => {
         async function fetchingCart() {
             try {
                 
-                const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/mycart`, {
+                const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/myexsistingcart`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

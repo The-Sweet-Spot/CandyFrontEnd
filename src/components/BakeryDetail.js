@@ -6,7 +6,7 @@ const BakeryDetail = () => {
     const {bakeryState: [bakery, setBakery]} = useOutletContext()
     const {profileState: [myProfile, setMyProfile]} = useOutletContext()
     const {cartState: [myCart, setMyCart]} = useOutletContext()
-
+    const {cartItemsState: [myCartItems, setMyCartItems]} = useOutletContext()
 
     const [moreBakeryDetail, setMoreBakeryDetail] = useState({})
     const navigate = useNavigate()
@@ -59,6 +59,7 @@ async function addToCart() {
         
         const translatedItemData = await addingItems.json();
         console.log("translated item data:", translatedItemData)
+        navigate("/bakery")
             // console.log("adding items:", addingItems)
         // return addingItems;
     } catch (error) {
