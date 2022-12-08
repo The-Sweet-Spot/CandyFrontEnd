@@ -13,7 +13,7 @@ console.log("sweets id", sweetsId)
     useEffect(() => {
         async function fetchCandy(){
             try{
-                const fetchedCandy = await fetch(`https://backend-sweet-spot.onrender.com/api/sweets/${sweetsId}`,
+                const fetchedCandy = await fetch(`http://localhost:3001/api/sweets/${sweetsId}`,
                 {
                     headers: {
                         'Content-Type' : 'application/json'
@@ -28,19 +28,27 @@ console.log("sweets id", sweetsId)
                 console.log(error);
             }
         }
+        console.log("myprofile", myProfile)
+            console.log("my cart", myCart)
+            console.log("cart items", myCartItems)
             fetchCandy();
+            
     },[])
     // const moreDetailedPost = postsOutletContext[0][candyId]
     // console.log(candy)
     async function addToCart() {
         console.log("running at cart function:")
         try {
-    
+            console.log("myprofile", myProfile)
+            console.log("my cart", myCart)
+            console.log("candy detail", candyDetail)
+            console.log("token", localStorage.getItem("token"))
+            console.log("sweets id", sweetsId)
             console.log("Start of try")
-            const addingItems = await fetch(`https://backend-sweet-spot.onrender.com/api/cartitems/add/${sweetsId}`,{
+            const addingItems = await fetch(`http://localhost:3001/api/cartitems/add/${sweetsId}`,{
                 method: "POST",
                 headers:{
-                    'Content-Type' : 'application/json',
+                    "Content-Type" : "application/json",
                     "Authorization": `Bearer ${localStorage.getItem("token")}`
                 },
                 body: JSON.stringify({
@@ -50,9 +58,12 @@ console.log("sweets id", sweetsId)
                 })
             })
             const success = await addingItems.json()
-            if(success) {
+            console.log("success", success)
+            if(success.length) {
                 try {
-                    const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/myexsistingcart`, {
+                    console.log("start of successful if statement")
+                    console.log("this is my profile in add to cart", myProfile)
+                    const response = await fetch(`http://localhost:3001/api/cart/myexsistingcart`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -65,7 +76,7 @@ console.log("sweets id", sweetsId)
                     })
                     
                         console.log("Start of my cart try blcok")
-                    const responseCartItems = await fetch(`https://backend-sweet-spot.onrender.com/api/cartitems/mycartitems`, {
+                    const responseCartItems = await fetch(`http://localhost:3001/api/cartitems/mycartitems`, {
                         headers: {
                             "Content-Type": "application/json",
                             "Authorization": `Bearer ${localStorage.getItem("token")}`
