@@ -76,7 +76,7 @@ const Homepage = () => {
             //         console.log(error)
             //     }
             // }
-            console.log("now runnin gfetch profile func")
+            console.log("now running fetch profile func")
             fetchProfileData();
             // console.log("now running fetching cart func")
             // fetchingCart();
@@ -86,7 +86,7 @@ const Homepage = () => {
         async function fetchingCart() {
             try {
                 
-                const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/mycart`, {
+                const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/myexsistingcart`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

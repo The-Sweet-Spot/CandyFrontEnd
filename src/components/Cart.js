@@ -9,6 +9,7 @@ const Cart = () => {
     const { cartState: [myCart, setMyCart] } = useOutletContext()
     const { profileState: [myProfile, setMyProfile] } = useOutletContext()
     const { cartItemsState: [myCartItems, setMyCartItems] } = useOutletContext()
+    const [total, setTotal] = useState(0)
     const navigate = useNavigate()
 
 
@@ -35,6 +36,23 @@ const Cart = () => {
     //     }
     //     fetchingCart()
     // }, []);
+    function totalPriceOfYourCart(array) {
+        let bucket = 0
+        console.log("array", array)
+        for(let i = 0; i < array.length; i++) {
+            if(array[i].price_bought_at >= 0) {
+                let priceNum = Number(array[i].price_bought_at)
+                bucket += priceNum
+                console.log(bucket)
+            }
+        }
+        return bucket
+    }
+    useEffect(() => {
+        let totalSum = totalPriceOfYourCart(myCartItems)
+        setTotal(totalSum)
+    }, [])
+
 async function deleteCartItemsFromCart(cartItemsId) {
     try {
         const response = await fetch (`https://backend-sweet-spot.onrender.com/api/cartitems/${cartItemsId}`, {
@@ -44,12 +62,49 @@ async function deleteCartItemsFromCart(cartItemsId) {
                 'Authorization': `Bearer ${localStorage.getItem("token")}`
             }
         })
-        const data = await response.json()
-        console.log("this is data for delete", data)
-        setMyCartItems(myCartItems.filter((items) => {
-            return items._cartItemsId != cartItemsId
-        }))
-        navigate(`/cart`)
+        const {success: [deletedItem, isDeleted]} = await response.json()
+        if(isDeleted) {
+            try {
+                const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/myexsistingcart`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    },
+                    body: JSON.stringify({
+                        usersId: myProfile.id,
+                        active: true
+                    })
+                })
+                
+                    console.log("Start of my cart try blcok")
+                const responseCartItems = await fetch(`https://backend-sweet-spot.onrender.com/api/cartitems/mycartitems`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    }
+                
+                })
+                console.log("this is the cartitems response", responseCartItems)
+                // console.log("response", response)
+        
+                const cartItemsData = await responseCartItems.json()
+                console.log("this is the cart data",cartItemsData)
+                setMyCartItems(cartItemsData)
+
+                const cartData = await response.json()
+                if(cartData) {
+                setMyCart(cartData)
+                navigate("/cart")
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        } else ({
+            message: "Was no good, your an imposter"
+        })
+    
+
     } catch (error) {
         console.error(error)
     }
@@ -58,7 +113,7 @@ async function deleteCartItemsFromCart(cartItemsId) {
 
     return (
         <div id="cartitems-container">
-            <h1>Your Cart</h1>
+            <h1 id="title">Cart</h1>
             { 
             myCartItems.length ? myCartItems.map((cartItems, idx) =>{
                 return <div key={idx} id="cart-items-list">
@@ -68,13 +123,13 @@ async function deleteCartItemsFromCart(cartItemsId) {
                     <br/>
                     <button onClick={(e) => {
                         e.preventDefault()
-                        deleteCartItemsFromCart(cartItems.cartItemsId)}} id="cart-items">Remove from cart</button>
+                        deleteCartItemsFromCart(cartItems.cartItemsId)}} id="cart-items-remove">Remove</button>
                     </div>
-            }): <p>There is an error loading your things, I'm sowwy</p>
+            }): <p>There is nothing in your Bag</p>
             } 
-            {/* Scratch */}
+            <div id="cart-items2">Total: {total}</div>
             <div>
-            <button><Link to="/cartcheckout">Checkout</Link></button>
+            <button id="checkout-button"><Link to="/cartcheckout">Checkout</Link></button>
             </div>
         </div>
     )
