@@ -31,7 +31,7 @@ const CartCheckout = () => {
             if(cardNumber.length  === 16 && securityCode.length === 3 && Date.now() < Date.parse(expiration)) {
                 console.log("this is starting the check out process")
                 try {
-                    const responseForStatus = await fetch('http://localhost:3001/api/cart/updateCart', {
+                    const responseForStatus = await fetch('https://backend-sweet-spot.onrender.com/api/cart/updateCart', {
                         method: "PATCH",
                         headers: {
                             "Content-Type": "application/json",
@@ -46,7 +46,7 @@ const CartCheckout = () => {
                     console.log("status update", statusData)
                     
                     
-                    const responseForNewCart = await fetch(`http://localhost:3001/api/cart/newusercart`, {
+                    const responseForNewCart = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/newusercart`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",

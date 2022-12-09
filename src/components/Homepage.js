@@ -28,7 +28,7 @@ const Homepage = () => {
         }
             async function fetchProfileData() {
                 try {
-                    const response = await fetch('http://localhost:3001/api/users/me',
+                    const response = await fetch('https://backend-sweet-spot.onrender.com/api/users/me',
                     {
                         headers: {
                             "Content-Type": "application/json",
@@ -82,7 +82,7 @@ const Homepage = () => {
         async function fetchingCart() {
             try {
                 console.log("starting to run fetch cart")
-                const response = await fetch(`http://localhost:3001/api/cart/myexsistingcart`, {
+                const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/myexsistingcart`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -109,7 +109,7 @@ const Homepage = () => {
 
     useEffect(() => {
         async function getAllSweets(){
-            const sweetsFetch = await fetch(`http://localhost:3001/api/sweets`,{
+            const sweetsFetch = await fetch(`https://backend-sweet-spot.onrender.com/api/sweets`,{
                 headers: {
                     'Content-Type' : 'application/json'
                 }
@@ -165,7 +165,7 @@ useEffect(() => {
     async function fetchingMyCartItems() {
         try {
             console.log("Start of my cart try blcok")
-        const response = await fetch(`http://localhost:3001/api/cartitems/mycartitems`, {
+        const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cartitems/mycartitems`, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${localStorage.getItem("token")}`

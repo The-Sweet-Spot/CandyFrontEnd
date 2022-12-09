@@ -23,7 +23,7 @@ const BakeryDetail = () => {
 
 useEffect (() => {
     async function bakedDetailFetch(){
-    const bakedDetailFetch = await fetch(`http://localhost:3001/api/sweets/${sweetsId}`, {
+    const bakedDetailFetch = await fetch(`https://backend-sweet-spot.onrender.com/api/sweets/${sweetsId}`, {
         headers:{
             'Content-Type' : 'application/json'
         }
@@ -41,7 +41,7 @@ async function addToCart() {
 
         console.log("Start of try")
         console.log("sweets id for bakery detail", sweetsId)
-        const addingItems = await fetch(`http://localhost:3001/api/cartitems/add/${sweetsId}`,{
+        const addingItems = await fetch(`https://backend-sweet-spot.onrender.com/api/cartitems/add/${sweetsId}`,{
             method: "POST",
             headers:{
                 'Content-Type' : 'application/json',
@@ -56,7 +56,7 @@ async function addToCart() {
         const success = await addingItems.json()
         if(success) {
             try {
-                const response = await fetch(`http://localhost:3001/api/cart/myexsistingcart`, {
+                const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/myexsistingcart`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -69,7 +69,7 @@ async function addToCart() {
                 })
                 
                     console.log("Start of my cart try blcok")
-                const responseCartItems = await fetch(`http://localhost:3001/api/cartitems/mycartitems`, {
+                const responseCartItems = await fetch(`https://backend-sweet-spot.onrender.com/api/cartitems/mycartitems`, {
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${localStorage.getItem("token")}`
