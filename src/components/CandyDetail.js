@@ -13,7 +13,7 @@ console.log("sweets id", sweetsId)
     useEffect(() => {
         async function fetchCandy(){
             try{
-                const fetchedCandy = await fetch(`http://localhost:3001/api/sweets/${sweetsId}`,
+                const fetchedCandy = await fetch(`https://backend-sweet-spot.onrender.com/api/sweets/${sweetsId}`,
                 {
                     headers: {
                         'Content-Type' : 'application/json'
@@ -45,7 +45,7 @@ console.log("sweets id", sweetsId)
             console.log("token", localStorage.getItem("token"))
             console.log("sweets id", sweetsId)
             console.log("Start of try")
-            const addingItems = await fetch(`http://localhost:3001/api/cartitems/add/${sweetsId}`,{
+            const addingItems = await fetch(`https://backend-sweet-spot.onrender.com/api/cartitems/add/${sweetsId}`,{
                 method: "POST",
                 headers:{
                     "Content-Type" : "application/json",
@@ -63,7 +63,7 @@ console.log("sweets id", sweetsId)
                 try {
                     console.log("start of successful if statement")
                     console.log("this is my profile in add to cart", myProfile)
-                    const response = await fetch(`http://localhost:3001/api/cart/myexsistingcart`, {
+                    const response = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/myexsistingcart`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -76,7 +76,7 @@ console.log("sweets id", sweetsId)
                     })
                     
                         console.log("Start of my cart try blcok")
-                    const responseCartItems = await fetch(`http://localhost:3001/api/cartitems/mycartitems`, {
+                    const responseCartItems = await fetch(`https://backend-sweet-spot.onrender.com/api/cartitems/mycartitems`, {
                         headers: {
                             "Content-Type": "application/json",
                             "Authorization": `Bearer ${localStorage.getItem("token")}`

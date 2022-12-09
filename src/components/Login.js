@@ -34,7 +34,7 @@ const Login = () => {
         event.preventDefault()
         try {
             const response = await fetch(
-                'http://localhost:3001/api/users/login',
+                'https://backend-sweet-spot.onrender.com/api/users/login',
                 {
                     method:"POST",
                     headers: {

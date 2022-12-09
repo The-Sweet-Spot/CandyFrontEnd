@@ -22,7 +22,7 @@ async function registerHandler(event){
         async function registering() {
             
             try {
-                const response = await fetch('http://localhost:3001/api/users/register', {
+                const response = await fetch('https://backend-sweet-spot.onrender.com/api/users/register', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -42,7 +42,7 @@ async function registerHandler(event){
         
                 console.log("start of new cart function")
                 console.log("this is token for new cart", localStorage.getItem("token"))
-            const responseForNewCart = await fetch(`http://localhost:3001/api/cart/newusercart`, {
+            const responseForNewCart = await fetch(`https://backend-sweet-spot.onrender.com/api/cart/newusercart`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
